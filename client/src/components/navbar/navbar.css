@@ -1,0 +1,88 @@
+/* Navbar heights; 0-720: 3.45rem, 721-1100: 4.75rem, 1100-infinity: 4.8rem */
+.nav-container{
+    background-color: var(--bg-color);
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+.nav-container .brand-logo {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+.nav-container a{
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+.nav-options{
+    display: flex;
+    align-items: center;
+    font-family: var(--choice-font);
+    font-weight: 700;
+}
+.nav-options > div{
+    display: flex;
+    gap: 1.5rem;
+    flex-flow: row-reverse;
+}
+.nav-options > nav{
+    display: flex;
+    margin: 0 1.5rem;
+}
+.nav-option{
+    position: relative;
+    padding: 0 0.75rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 4;
+    font-size: var(--p2);
+}
+.nav-option > span {
+    opacity: 0.98;
+}
+.nav-container .apply-button {
+    font-size: var(--p4);
+}
+.menu-icon {
+    display: none;
+    color: black;
+}
+
+@media screen and (max-width: 1440px) {
+    .nav-option {
+        font-size: var(--p4);
+    }
+}
+@media screen and (max-width: 1240px) {
+    .nav-options > nav {
+        display: none;
+    }
+    .nav-options > div {
+        gap: 1rem;
+        margin-right: 1rem;
+    }
+    .menu-icon {
+        display: block;
+        margin-left: 1rem;
+    }
+}
+@media screen and (max-width: 720px) {
+    .nav-container {
+        padding: 0.8rem 1rem;
+    }
+    .nav-options i{
+        font-size: 1.5rem !important;
+    }
+    .nav-options .apply-button{
+        font-size: 0.8rem;
+        padding: 0.45rem 0.8rem;
+        border-radius: 0.45rem;
+    }
+}
