@@ -1,0 +1,120 @@
+#intro {
+    height: var(--full-height);
+    display: flex;
+    flex-flow: column;
+
+}
+.intro-img-wrap {
+        /* Full screen minus navbar height*/
+        height: 100%;
+        background-image: url("../../assets/recruitment.png");
+        background-position: top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        color: var(--bg-color);
+        background-color: var(--soft-shadow-actual-color);
+}
+.intro-desc {
+   text-align: center;
+   margin: 0;
+   font-size: var(--p1);
+   font-weight: 500;
+}
+.shaded-section .section{
+    padding-bottom: 2.5rem;
+}
+.statement {
+    font-size: var(--h3);
+    text-align: center;
+    font-weight: 500;
+    margin: 0;
+}
+.our-values-wrap.section {
+    padding: 5rem 0;
+}
+.our-values {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.community {
+    position: relative;
+}
+.community .section {
+    padding: 4rem 1rem;
+}
+.community .section > div {
+    align-items: flex-start;
+}
+.community-1 {
+    position: absolute;
+    bottom: 0;
+    right: 3rem;
+    height: 100%;
+}
+.community-2 {
+    display: none;
+}
+.community-article {
+    width: 100%;
+    max-width: 30rem;
+}
+.community-article header {
+    font-size: var(--h2);
+   font-weight: 500;
+}
+.community-article p {
+    font-size: var(--p1);
+   font-weight: 500;
+}
+
+@media screen and (max-width: 960px) {
+    .intro-img-wrap {
+        background-image: url("../../assets/recruitment-md.png");
+        background-position: top right;
+    }
+}
+@media screen and (max-width: 920px) {
+    .community-1 {
+        display: none;
+    }
+    .community-2 {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 2rem;
+        width: 30%
+    }
+}
+@media screen and (max-width: 720px) {
+    .community .section {
+        padding: 15rem 1rem 4rem;
+    }
+    .community .section > div {
+        align-items: center;
+    }
+    .community-2 {
+        height: 10rem;
+        width: auto;
+        top: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+@media screen and (max-width: 560px) {
+    .intro-img-wrap {
+        background-image: url("../../assets/recruitment-sm.png");
+    }
+    /* .community .section {
+        padding: 13rem 1rem 4rem;
+    }
+    .community-2 {
+        height: 10rem;
+        top: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+    } */
+}
