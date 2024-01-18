@@ -1,0 +1,19 @@
+.section {
+    padding: 2.5rem 1rem 4rem;
+    box-sizing: border-box;
+}
+.section > div {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 65rem;
+    max-width: 65rem;
+}
+.section > div > header {
+    text-transform: capitalize;
+    font-size: var(--h2);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
