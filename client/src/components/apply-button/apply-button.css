@@ -1,5 +1,5 @@
 .apply-button{
-    padding: 0.6rem 1rem;
+    padding: 0.3rem 0.8rem 0.2rem;
     background-color: var(--primary-color);
     border: none;
     border-radius: 0.7rem;
@@ -8,6 +8,7 @@
     text-transform: uppercase;
     box-shadow: 1px 1px 5px var(--soft-shadow-color);
     color: var(--bg-color-opp);
+    font-weight: 500;
 }
 .apply-button:hover{
     opacity: 0.7;
