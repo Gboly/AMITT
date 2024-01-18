@@ -1,0 +1,19 @@
+.action-cameo {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.action-cameo img {
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+}
+.action-cameo header {
+    font-size: var(--h4);
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+}
+.action-cameo p {
+    font-size: var(--p1);
+    font-weight: 500;
+}
