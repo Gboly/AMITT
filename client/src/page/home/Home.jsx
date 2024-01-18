@@ -1,5 +1,4 @@
 import AnimatedPage from "../../components/animated/AnimatedPage";
-import Animated from "../../components/animated/Animated";
 import "./home.css";
 import CustomSection from "../../components/customSection/CustomSection";
 import { useRef } from "react";
