@@ -1,0 +1,28 @@
+.text-input-container {
+    display: flex;
+    flex-flow: column;
+    gap: 0.5rem;
+    min-width: fit-content;
+}
+.text-input-container label {
+    font-size: var(--p2);
+    opacity: 0.95;
+}
+.text-input-container input, .text-input-container textarea {
+    background-color: inherit;
+    color: inherit;
+    border: 1px solid rgba(121,121,121,0.6);
+    border-radius: 0.35rem;
+    height: 3.3rem;
+    padding: 0 0.5rem;
+    font-size: var(--p3);
+    font-family: inherit;
+}
+.text-input-container input:focus, .text-input-container textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+.text-input-container textarea {
+    height: auto;
+    padding-top: 0.5rem;
+}
