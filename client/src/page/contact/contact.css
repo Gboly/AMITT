@@ -1,0 +1,69 @@
+.contact .intro {
+    width: 100%;
+    display: flex;
+}
+.contact .intro > img, .contact .intro > div {
+    flex: 1
+}
+.contact .intro > img {
+    min-width: 20rem;
+}
+.contact .intro > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+.contact .intro > div > div {
+    max-width: 30rem;
+}
+.contact .intro > div header {
+    font-size: var(--h3);
+}
+.contact .intro aside {
+    margin-top: 2rem;
+}
+.contact .intro aside div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.contact a {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+.custom-message {
+    padding-top: 4rem;
+}
+.contact form {
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    overflow-x: hidden;
+}
+.contact form > div {
+    flex: calc(50% - 1rem);
+}
+.contact form > .submit {
+    flex: 100% ;
+}
+.submit button {
+    font-size: var(--p3);
+    background-color: var(--primary-color);
+    padding: 0.4rem 2rem;
+    border-radius: 0.3rem;
+    border: none;
+    font-family: var(--choice-font);
+}
+
+@media screen and (max-width: 720px) {
+    .contact .intro {
+        flex-flow: column;
+    }
+}

@@ -3,6 +3,7 @@ import App from "../App";
 import Layout from "../layout/Layout";
 import Home from "../page/home/Home";
 import About from "../page/about/About";
+import Contact from "../page/contact/Contact";
 
 export default function Router() {
   return (
@@ -17,6 +18,7 @@ export default function Router() {
       >
         <Route index element={<Home />} />
         <Route path="/about-us" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Route>
     </Routes>
   );

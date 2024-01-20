@@ -74,3 +74,26 @@ export const learnMore = [
     url: "/application",
   },
 ];
+
+export const customMessageDetails = [
+  {
+    name: "firstName",
+    label: "First Name",
+  },
+  {
+    name: "lastName",
+    label: "Last Name",
+  },
+  {
+    name: "email",
+    label: "Email",
+  },
+  {
+    name: "phone",
+    label: "Phone Number",
+  },
+  {
+    name: "message",
+    label: "Your Message To Us",
+  },
+];
