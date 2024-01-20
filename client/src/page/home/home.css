@@ -70,6 +70,24 @@
     font-size: var(--p1);
    font-weight: 500;
 }
+.community-article button {
+    width: 100%;
+    max-width: 20rem;
+    padding: 1rem 0;
+    border-radius: 2rem;
+    font-size: var(--p1 );
+    font-weight: 700;
+    font-family: inherit;
+    background-color: transparent;
+    border: 1px solid var(--text-color);
+    color: inherit;
+    outline: none;
+    margin-top: 1rem;
+}
+.community-article button:hover {
+    background-color: var(--primary-color);
+    border: none;
+}
 
 @media screen and (max-width: 960px) {
     .intro-img-wrap {

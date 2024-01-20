@@ -67,6 +67,7 @@ const Home = () => {
               with you to map out a personalized journey based on your distinct
               potential and passion.
             </p>
+            <button>Apply Now</button>
           </div>
         </CustomSection>
         <img src={community} alt="" className={"community-1"} />
