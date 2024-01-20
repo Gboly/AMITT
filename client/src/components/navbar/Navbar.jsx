@@ -4,7 +4,7 @@ import ApplyButton from "../apply-button/ApplyButton";
 import { navOptions } from "../../util/content";
 import logo from "../../assets/amitt-logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Icon from "../icon/Icon";
 
 const Navbar = () => {
@@ -58,9 +58,10 @@ const Navbar = () => {
   );
 };
 
-const NavOption = ({ option: { desc } }) => {
+const NavOption = ({ option: { desc, url } }) => {
   //const [isHovered, setIsHovered] = useState(false);
   const subOptionsRef = useRef(null);
+  const navigate = useNavigate();
 
   // const handleMouseOver = () => {
   //   setIsHovered(true);
@@ -68,11 +69,13 @@ const NavOption = ({ option: { desc } }) => {
   // const handleMouseOut = () => {
   //   setIsHovered(false);
   // };
+  const handleRouting = () => navigate(url);
 
   return (
     <div
       key={desc}
       className="nav-option"
+      onClick={handleRouting}
       // onMouseOver={handleMouseOver}
       // onMouseOut={handleMouseOut}
     >
