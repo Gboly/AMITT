@@ -3,14 +3,17 @@ import "./about.css";
 import recruitment from "../../assets/recruitment.jpg";
 import ceo from "../../assets/ceo.jpeg";
 import CustomSection from "../../components/customSection/CustomSection";
+import { useRef } from "react";
 
 const About = () => {
+  const aboutUsRef = useRef(null);
+  const teamRef = useRef(null);
+
   return (
     <AnimatedPage className={"about"}>
       <img src={recruitment} alt="" />
       <p>Connecting Talent, Building Futures...</p>
-      <CustomSection className="about-us">
-        <header>About Us</header>
+      <CustomSection className="about-us" header={"About Us"} ref={aboutUsRef}>
         <p>
           As a company we recruit, train and deploy financial professionals to
           work with our worldwide clients - we strive to mould people into
@@ -25,8 +28,7 @@ const About = () => {
           place for hindered talent.
         </p>
       </CustomSection>
-      <CustomSection className="team">
-        <header>Meet The Team</header>
+      <CustomSection className="team" header={"Meet The Team"} ref={teamRef}>
         <img src={ceo} alt="" />
         <h3>Monsurat ‘Lape’ Adeoti</h3>
         <h5>Chief Excexutive Officer</h5>
