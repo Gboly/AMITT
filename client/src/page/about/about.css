@@ -1,0 +1,33 @@
+.about img {
+    width: 100%;
+    object-fit: cover;
+}
+.about > p {
+    width: 100%;
+    text-align: center;
+    font-size: var(--h2);
+    font-weight: 700;
+}
+.about-us header {
+}
+.team {
+    padding-top: 0;
+}
+.team img {
+    width: 10rem;
+    border-radius: 50%;
+    margin-top: 1rem;
+}
+.team h3 {
+    font-size: var(--h4);
+    margin: 1rem 0 0;
+    font-weight: 700;
+}
+.team h5 {
+    font-size: var(--p1);
+    margin: 0.5rem 0 1rem;
+    font-weight: 500;
+}
+.team p {
+    font-size: inherit;
+}

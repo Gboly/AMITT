@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import App from "../App";
 import Layout from "../layout/Layout";
 import Home from "../page/home/Home";
+import About from "../page/about/About";
 
 export default function Router() {
   return (
@@ -15,6 +16,7 @@ export default function Router() {
         }
       >
         <Route index element={<Home />} />
+        <Route path="/about-us" element={<About />} />
       </Route>
     </Routes>
   );
