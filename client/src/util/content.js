@@ -7,16 +7,19 @@ export const navOptions = [
     desc: "About",
     content: [],
     columnType: "single-column",
+    url: "/about-us",
   },
   {
     desc: "FAQ",
     content: [],
     columnType: "single-column",
+    url: "/faq",
   },
   {
     desc: "Contact",
     content: [],
     columnType: "single-column",
+    url: "/contact",
   },
 ];
 
@@ -50,5 +53,24 @@ export const ourValues = [
   {
     header: "Upholding Excellence",
     desc: "Upholding excellence is not just a goal; it's a standard that permeates every aspect of our company. We set high expectations for ourselves and hold each other accountable to deliver outstanding quality in our work. Excellence is not a one-time achievement but a continuous pursuit. From our recruitment processes to training methodologies and deployment strategies, we strive for nothing short of excellence. ",
+  },
+];
+
+export const learnMore = [
+  {
+    desc: "About Us",
+    url: "/about-us",
+  },
+  {
+    desc: "Contact Us",
+    url: "/contact",
+  },
+  {
+    desc: "FAQ",
+    url: "/faq",
+  },
+  {
+    desc: "Apply Now",
+    url: "/application",
   },
 ];
