@@ -1,6 +1,9 @@
 import recruit from "../assets/recruit.png";
 import train from "../assets/train.png";
 import deploy from "../assets/deploy.png";
+import GAQ from "../assets/GAQ.png";
+import TRQ from "../assets/TRQ.png";
+import PTQ from "../assets/PTQ.png";
 
 export const navOptions = [
   {
@@ -97,3 +100,75 @@ export const customMessageDetails = [
     label: "Your Message To Us",
   },
 ];
+
+export const faqTopics = [
+  {
+    img: GAQ,
+    topic: "General",
+  },
+  {
+    img: TRQ,
+    topic: "Training",
+  },
+  {
+    img: PTQ,
+    topic: "Post Training",
+  },
+];
+
+export const faqHeaders = {
+  General: "Generally Asked Questions",
+  Training: "Training Related Questions",
+  ["Post Training"]: "Post Training Related Questions",
+};
+
+export const questions = {
+  General: [
+    {
+      summary: "How do I apply for a position with your company?",
+      details: `To apply, simply click on the "Apply Now" button at the top right corner and submit your application through the online form. Our team will review your application promptly.`,
+    },
+    {
+      summary:
+        "What industries does your company specialize in for recruitment?",
+      details:
+        "We specifically in a diverse range of industries but more specifically in the middle office operations industry.",
+    },
+    {
+      summary: "What sets your recruitment process apart from others?",
+      details:
+        "Our recruitment process is distinguished by its meticulousness, ensuring a comprehensive assessment of skills, cultural fit, and potential. We believe in a personalized approach to match candidates with the right opportunities.",
+    },
+  ],
+  Training: [
+    {
+      summary: "How are training programs structured at your company?",
+      details:
+        "Our training programs are carefully designed to foster both technical skills and holistic professional development. We offer a dynamic learning environment with a focus on practical, industry-relevant knowledge.",
+    },
+    {
+      summary: "What support is provided during the training phase?",
+      details:
+        "From day one, candidates are supported by a team of mentors who provide guidance, tools, and context. Our goal is to ensure a seamless transition from training to deployment.",
+    },
+  ],
+  ["Post Training"]: [
+    {
+      summary: "What happens after the training phase?",
+      details:
+        "After training, candidates enter our deployment phase, where they are strategically matched with roles that align with their strengths and aspirations. Our support continues throughout their career journey.",
+    },
+    {
+      summary:
+        "What opportunities for career growth are available post-training?",
+      details:
+        "The sky's the limit! We partner with individuals to map out their career journey based on their unique potential and passion. Opportunities for advancement are abundant, and continuous learning is encouraged.",
+    },
+    {
+      summary:
+        "How does your company support ongoing professional development?",
+      details:
+        "We are committed to continuous learning. Our company offers various resources, mentorship programs, and opportunities for skill enhancement to support the ongoing professional development of our team members.",
+    },
+  ],
+};

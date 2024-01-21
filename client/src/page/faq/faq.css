@@ -1,0 +1,96 @@
+.faq .intro {
+    width: 100%;
+    display: flex;
+}
+.faq .intro > img, .faq .intro > div {
+    flex: 1
+}
+.faq .intro > img {
+    min-width: 20rem;
+}
+.faq .intro > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+.faq .intro > div > div {
+    max-width: 30rem;
+}
+.faq .intro > div header {
+    font-size: var(--h3);
+}
+.faq .intro button {
+    padding: 0.5rem 2rem;
+    background-color: transparent;
+    border: 1px solid var(--text-color);
+    color: inherit;
+    margin-top: 1rem;
+    font-family: var(--choice-font);
+    font-size: var(--p3);
+    border-radius: 2rem;
+    outline: none;
+}
+.faq-topics > div > p {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.faq-topics .topics {
+    width: 100%;
+    max-width: 50rem;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    gap: 1rem;
+}
+.faq-topics .topics article {
+    flex: 1;
+    min-width: 10rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    box-shadow: 2px 2px 5px var(--soft-shadow-color);
+    padding: 0.5rem 0 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.faq-topics .topics article:hover {
+    opacity: 0.5;
+}
+.faq-topics .topics article p {
+    font-size: var(--h4);
+}
+.faq .topics div {
+    display: flex;
+    height: 12rem;
+    margin-bottom: 2rem;
+}
+.faq .topics img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.active-topic {
+    background-color: var(--primary-color);
+}
+.faq-topics .topics .active-topic:hover {
+    opacity: 1;
+}
+.questions > div, .questions > div > div {
+    margin-top: 3rem;
+}
+.questions > div > div {
+    margin-bottom: 5rem;
+}
+@media screen and (max-width: 720px) {
+    .faq .intro {
+        flex-flow: column;
+    }
+    .faq-topics .topics article {
+        flex: 100%;
+        max-width: 30rem;
+        padding: 1rem 0 0;
+    }
+}
