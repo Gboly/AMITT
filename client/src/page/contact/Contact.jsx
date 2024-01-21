@@ -10,8 +10,8 @@ import { useRef, useState } from "react";
 import { customMessageDetails } from "../../util/content";
 import TextInput from "../../components/text-input/TextInput";
 
-const initialState = customMessageDetails.reduce((accum, current) => {
-  accum = { ...accum, [current]: "" };
+const initialState = customMessageDetails.reduce((accum, { name }) => {
+  accum = { ...accum, [name]: "" };
   return accum;
 }, {});
 
@@ -66,7 +66,7 @@ const Contact = () => {
               {...{ name, label, value: details[name], handleInput }}
             />
           ))}
-          <div className="submit">
+          <div className="submit" name="custom-message">
             <button type="submit">Submit</button>
           </div>
         </form>
