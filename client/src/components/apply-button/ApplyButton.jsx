@@ -1,20 +1,18 @@
 import "./apply-button.css";
-import { motion } from "framer-motion";
-import { forwardRef, useContext } from "react";
-//import { GeneralContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 
-function ApplyButtonWithRef({ styleClass, variants }, ref) {
-  //   const { navigateToSection } = useContext(GeneralContext);
+function ApplyButton({ styleClass }) {
+  const navigate = useNavigate();
 
-  //   const handleClick = () => {
-  //     navigateToSection("Donate today");
-  //   };
+  const handleClick = () => {
+    navigate("/application");
+  };
 
   return (
     <>
       <button
         className={`apply-button ${styleClass || ""}`}
-        //onClick={handleClick}
+        onClick={handleClick}
       >
         Apply Now
       </button>
@@ -22,5 +20,4 @@ function ApplyButtonWithRef({ styleClass, variants }, ref) {
   );
 }
 
-const ApplyButton = forwardRef(ApplyButtonWithRef);
 export default ApplyButton;
