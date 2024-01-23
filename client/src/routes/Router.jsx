@@ -5,6 +5,7 @@ import Home from "../page/home/Home";
 import About from "../page/about/About";
 import Contact from "../page/contact/Contact";
 import Faq from "../page/faq/Faq";
+import Application from "../page/application/Application";
 
 export default function Router() {
   return (
@@ -21,6 +22,7 @@ export default function Router() {
         <Route path="/about-us" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/application" element={<Application />} />
       </Route>
     </Routes>
   );
