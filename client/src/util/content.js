@@ -172,3 +172,118 @@ export const questions = {
     },
   ],
 };
+
+export const applicationStages = [
+  {
+    id: 1,
+    label: "Personal Information",
+    zIndex: 1,
+  },
+  {
+    id: 2,
+    label: "Eligibilty",
+    zIndex: 0.9,
+  },
+  {
+    id: 3,
+    label: "Education",
+    zIndex: 0.8,
+  },
+  {
+    id: 4,
+    label: "Skills / Qualifications",
+    zIndex: 0.7,
+  },
+  {
+    id: 5,
+    label: "Previous Employment",
+    zIndex: 0.8,
+  },
+  {
+    id: 6,
+    label: "References",
+    zIndex: 0.8,
+  },
+  {
+    id: 7,
+    label: "Cover letter & Resume",
+    zIndex: 0.8,
+  },
+  {
+    id: 8,
+    label: "Send Application",
+    zIndex: 0.8,
+  },
+];
+
+export const setSlideColor = (stage, id, type) =>
+  (type === "thumb" ? stage > id : stage >= id)
+    ? "var(--primary-color)"
+    : "var(--soft-shadow-actual-color)";
+
+export const raceOptions = [
+  "American Indian / Alaska Native",
+  "Asian",
+  "Black or African American",
+  "Native Hawaiian",
+  "White",
+];
+
+export const personalContent = [
+  {
+    name: "firstName",
+    label: "First Name",
+  },
+  {
+    name: "middleName",
+    label: "Middle Name",
+  },
+  {
+    name: "lastName",
+    label: "Last Name",
+  },
+  {
+    name: "address",
+    label: "Street Address",
+  },
+  {
+    name: "city",
+    label: "City",
+  },
+  {
+    name: "state",
+    label: "State / Province",
+  },
+  {
+    name: "postCode",
+    label: "Postal / Zip Code",
+  },
+  {
+    name: "phone",
+    label: "Phone Number",
+  },
+  {
+    name: "email",
+    label: "E-mail",
+  },
+  {
+    name: "birthday",
+    label: "Date of Birth",
+  },
+  {
+    name: "gender",
+    label: "Gender",
+  },
+  {
+    name: "race",
+    label: "Race / Ethnical Group",
+    options: raceOptions,
+  },
+];
+
+// const
+
+export const selectTypes = ["race"];
+export const fileTypes = [];
+
+export const appStagesContent = [personalContent];
