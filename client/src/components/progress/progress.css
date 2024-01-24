@@ -46,7 +46,6 @@
 .app-stage:last-of-type .dots {
     display: none;
 }
-
 /* Completed styling */
 .completed-stage {
     opacity: 1;
@@ -65,3 +64,11 @@
     background-color: var(--primary-color);
 }
 
+@media screen and (max-width: 720px) {
+    .application-progess {
+        padding: 2rem 1rem;
+    }
+    .app-stage .item > div:last-of-type {
+        display: none;
+    }
+}

@@ -12,7 +12,11 @@ const textareaTypes = [
 ];
 const TextInput = ({ value, handleInput, name, label }) => {
   return (
-    <div className="text-input-container">
+    <div
+      className={`text-input-container ${
+        textareaTypes.includes(name) ? "text-area" : ""
+      }`}
+    >
       <label htmlFor={name}>{label}</label>
       {textareaTypes.includes(name) ? (
         <textarea

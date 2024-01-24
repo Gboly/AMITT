@@ -8,6 +8,7 @@
 }
 .application > div {
     align-items: flex-start;
+    justify-content: flex-start;
     width: 100%;
 }
 .application h1 {
@@ -31,10 +32,36 @@
 .application form > div {
     flex: calc(50% - 1rem);
 }
+.application form .terms > p:first-of-type{
+    margin-top: -0.5rem;
+}
+.application form > .text-area {
+    flex: 100%
+}
+.application .form-actions {
+    flex: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.application .form-actions button {
+    padding: 0.7rem 1rem;
+    font-family: var(--font-family);
+    font-size: var(--p4);
+    border-radius: 0.3rem;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+}
+.application .form-actions .back {
+    padding: 0.7rem 1.7rem;
+}
+
 
 @media screen and (max-width: 720px) {
     .application-page {
-        gap: 1rem;
+        gap: 0rem;
     }
     .application form {
         gap: 1rem;
