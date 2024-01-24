@@ -4,6 +4,7 @@ import deploy from "../assets/deploy.png";
 import GAQ from "../assets/GAQ.png";
 import TRQ from "../assets/TRQ.png";
 import PTQ from "../assets/PTQ.png";
+import { prepareOptions } from "./function";
 
 export const navOptions = [
   {
@@ -179,47 +180,42 @@ export const applicationStages = [
     label: "Personal Information",
     zIndex: 1,
   },
+  // {
+  //   id: 2,
+  //   label: "Eligibilty",
+  //   zIndex: 0.9,
+  // },
   {
     id: 2,
-    label: "Eligibilty",
-    zIndex: 0.9,
-  },
-  {
-    id: 3,
     label: "Education",
     zIndex: 0.8,
   },
   {
-    id: 4,
+    id: 3,
     label: "Skills / Qualifications",
     zIndex: 0.7,
   },
   {
-    id: 5,
+    id: 4,
     label: "Previous Employment",
     zIndex: 0.8,
   },
   {
-    id: 6,
+    id: 5,
     label: "References",
     zIndex: 0.8,
   },
   {
-    id: 7,
+    id: 6,
     label: "Cover letter & Resume",
     zIndex: 0.8,
   },
   {
-    id: 8,
+    id: 7,
     label: "Send Application",
     zIndex: 0.8,
   },
 ];
-
-export const setSlideColor = (stage, id, type) =>
-  (type === "thumb" ? stage > id : stage >= id)
-    ? "var(--primary-color)"
-    : "var(--soft-shadow-actual-color)";
 
 export const raceOptions = [
   "American Indian / Alaska Native",
@@ -228,6 +224,8 @@ export const raceOptions = [
   "Native Hawaiian",
   "White",
 ];
+
+const yesOrNo = `Reply with a "Yes" or "No"`;
 
 export const personalContent = [
   {
@@ -259,6 +257,10 @@ export const personalContent = [
     label: "Postal / Zip Code",
   },
   {
+    name: "country",
+    label: "Country",
+  },
+  {
     name: "phone",
     label: "Phone Number",
   },
@@ -277,13 +279,122 @@ export const personalContent = [
   {
     name: "race",
     label: "Race / Ethnical Group",
-    options: raceOptions,
+    options: prepareOptions(raceOptions),
+  },
+];
+
+export const educationContent = [
+  {
+    name: "highSchool",
+    label: "Name of High School Attended",
+  },
+  {
+    name: "highSchoolDuration",
+    label: "Number of Years Attended",
+  },
+  {
+    name: "highSchoolGraduate",
+    label: `Did you graduate? (${yesOrNo})`,
+  },
+  {
+    name: "university",
+    label: "Name of College / Univeristy Attended",
+  },
+  {
+    name: "univeristyDuration",
+    label: "Number of Years Attended",
+  },
+  {
+    name: "univeristyCourse",
+    label: "Area of Study/ Degree",
+  },
+  {
+    name: "universityGraduate",
+    label: `Did you graduate? (${yesOrNo})`,
+  },
+];
+
+export const skillsContent = [
+  {
+    name: "skills",
+    label: "Skills (List any relevant skill you possess)",
+  },
+  {
+    name: "qualifications",
+    label:
+      "Qualifications (List any relevant certifications / qualifications you possess)",
+  },
+];
+
+export const previousJobContent = [
+  {
+    name: "prevOrganization",
+    label: "Organization's Name",
+  },
+  {
+    name: "prevPosition",
+    label: "What Position Did You Hold?",
+  },
+  {
+    name: "reasonForLeaving",
+    label: "Reason For Leaving",
+  },
+];
+
+export const referenceContent = [
+  {
+    name: "referenceName",
+    label: "Name Of Reference",
+  },
+  {
+    name: "refRelationship",
+    label: "Relationship With Reference",
+  },
+  {
+    name: "refRelDuration",
+    label: "Years Acquainted",
+  },
+  {
+    name: "refPhone",
+    label: "Phone Number",
+  },
+  {
+    name: "refEmail",
+    label: "Email",
+  },
+];
+
+export const resumeContent = [
+  {
+    name: "resume",
+    label: "Resume",
+  },
+  {
+    name: "coverLetter",
+    label: "Cover Letter (Optional)",
   },
 ];
 
 // const
 
 export const selectTypes = ["race"];
-export const fileTypes = [];
+export const fileTypes = ["resume", "coverLetter"];
 
-export const appStagesContent = [personalContent];
+export const appStagesContent = [
+  personalContent,
+  educationContent,
+  skillsContent,
+  previousJobContent,
+  referenceContent,
+  resumeContent,
+];
+
+export const headers = [
+  "Tell Us About Yourself",
+  "We Require Information About Your Educational Background",
+  "Show Off Your Skills",
+  "Tell Us About Your Previous Job (Skip if not applicable)",
+  "Provide Us With A Reference Details",
+  "Upload Your Resume and Optionally Upload a Cover Letter",
+  "Terms And Agreement",
+];
