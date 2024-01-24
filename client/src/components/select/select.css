@@ -22,6 +22,7 @@
     font-size: var(--p3);
     padding: 0 0.3rem;
     outline: none;
+    margin-top: 0.5rem;
 }
 .select option {
     background-color: var(--soft-shadow-actual-color);

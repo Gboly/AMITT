@@ -2,8 +2,14 @@ import "./text-input.css";
 
 const inputTypes = {
   email: "email",
+  birthday: "date",
 };
-const textareaTypes = ["message"];
+const textareaTypes = [
+  "message",
+  "skills",
+  "qualifications",
+  "reasonForLeaving",
+];
 const TextInput = ({ value, handleInput, name, label }) => {
   return (
     <div className="text-input-container">

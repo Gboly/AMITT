@@ -25,4 +25,5 @@
 .text-input-container textarea {
     height: auto;
     padding-top: 0.5rem;
+    resize: none;
 }

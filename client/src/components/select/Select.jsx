@@ -6,8 +6,8 @@ const Select = ({ label, name, value, handleChange, options }) => {
       <label htmlFor={name}>{label}</label>
       <select
         className="select"
-        name={label}
-        id={label}
+        name={name}
+        id={name}
         value={value}
         onChange={handleChange}
       >
