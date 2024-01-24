@@ -1,6 +1,5 @@
-import { applicationStages, setSlideColor } from "../../util/content";
+import { applicationStages } from "../../util/content";
 import "./progress.css";
-import { useState } from "react";
 
 const Progress = ({ stage, goToStage }) => {
   return (
@@ -10,7 +9,7 @@ const Progress = ({ stage, goToStage }) => {
           key={id}
           className={`app-stage ${stage === id ? "active-stage" : ""}`}
         >
-          <div className="item">
+          <div className="item" onClick={() => goToStage(id)}>
             <div>{id}</div>
             <div>{label}</div>
           </div>
