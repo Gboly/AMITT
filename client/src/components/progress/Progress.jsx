@@ -1,15 +1,24 @@
 import { applicationStages } from "../../util/content";
 import "./progress.css";
 
-const Progress = ({ stage, goToStage }) => {
+const Progress = ({ stage, goToStage, completedStages }) => {
+  const isCompleted = (id) =>
+    completedStages?.some(({ stage: completedStage }) => completedStage === id);
+
   return (
     <aside className="application-progess">
       {applicationStages.map(({ id, label }) => (
         <div
           key={id}
-          className={`app-stage ${stage === id ? "active-stage" : ""}`}
+          className={`app-stage ${
+            stage === id
+              ? "active-stage"
+              : isCompleted(id)
+              ? "completed-stage"
+              : ""
+          }`}
         >
-          <div className="item" onClick={() => goToStage(id)}>
+          <div className="item" onClick={() => goToStage && goToStage(id)}>
             <div>{id}</div>
             <div>{label}</div>
           </div>
