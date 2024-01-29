@@ -57,6 +57,10 @@
 .application .form-actions .back {
     padding: 0.7rem 1.7rem;
 }
+.application-page .spinner {
+    min-height: 20rem;
+    max-width: 50rem;
+}
 
 
 @media screen and (max-width: 720px) {
