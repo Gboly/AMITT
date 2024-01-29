@@ -398,3 +398,13 @@ export const headers = [
   "Upload Your Resume and Optionally Upload a Cover Letter",
   "Terms And Agreement",
 ];
+
+export const notRequiredFields = {
+  1: ["middleName"],
+  2: [],
+  3: ["qualifications"],
+  4: ["prevOrganization", "prevPosition", "reasonForLeaving"],
+  5: [],
+  6: ["coverLetter"],
+  7: [],
+};

@@ -18,3 +18,10 @@ export const getInitialInfo = (content) =>
     accum = { ...accum, [name]: "" };
     return accum;
   }, {});
+
+export const applicationId = localStorage.getItem("applicationId");
+
+export const nextStage = (completedStages) => {
+  const lastStage = completedStages[completedStages?.length - 1]?.stage;
+  return lastStage ? lastStage + 1 : 1;
+};
