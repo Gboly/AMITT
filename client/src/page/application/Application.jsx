@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AnimatedPage from "../../components/animated/AnimatedPage";
 import CustomSection from "../../components/customSection/CustomSection";
 import FileInput from "../../components/fileInput/FileInput";
@@ -9,32 +9,63 @@ import {
   appStagesContent,
   fileTypes,
   headers,
+  notRequiredFields,
   selectTypes,
 } from "../../util/content";
 import "./application.css";
-import { getInitialInfo } from "../../util/function";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  applySavedValues,
+  getDataByStage,
+  inputValue,
+} from "../../app/applicationSlice";
+import { applicationId, nextStage } from "../../util/function";
+import { useGetApplicationQuery } from "../../app/applicationApiSlice";
+import Spinner from "../../components/spinner/Spinner";
 
+const fileInitialState = { resume: "", coverLetter: "" };
 const Application = () => {
-  // Have a stage progress field in backend which would be used as initialState.
-  const [stage, setStage] = useState(1);
-  const goToStage = (newStage) => setStage(newStage);
+  const dispatch = useDispatch();
 
-  const [data, setData] = useState(
-    stage !== 7 ? getInitialInfo(appStagesContent[stage - 1]) : {}
+  const { data: applicationDetails, isLoading } = useGetApplicationQuery(
+    applicationId,
+    { skip: !applicationId }
   );
 
+  // Have a stage progress field in backend which would be used as initialState.
+  const [stage, setStage] = useState(0);
+  const data = useSelector((state) => getDataByStage(state, stage));
+  const [{ resume, coverLetter }, setFileValue] = useState(fileInitialState);
+
+  useEffect(() => {
+    applicationDetails && dispatch(applySavedValues(applicationDetails));
+    !isLoading &&
+      setStage(nextStage(applicationDetails?.completedStages || []));
+  }, [applicationDetails, isLoading, dispatch]);
+
+  const goToStage = (newStage) => {
+    setStage(newStage);
+  };
+
   const handleInput = (e, value) => {
-    setData((currentData) => ({
-      ...currentData,
-      [e.target?.id || e.target?.name]: value || e.target.value,
-    }));
+    dispatch(
+      inputValue({
+        key: e.target?.id || e.target?.name,
+        value: value || e.target.value,
+      })
+    );
   };
 
   const handleChange = () => {};
   const handleSubmit = () => {};
 
   const [canSave, isSubmitStage] = useMemo(
-    () => [Object.values(data).every((value) => value), stage === 7],
+    () => [
+      Object.keys(data).every((key) =>
+        notRequiredFields?.[stage]?.includes(key) ? true : data[key]
+      ),
+      stage === 7,
+    ],
     [data, stage]
   );
 
@@ -50,73 +81,81 @@ const Application = () => {
 
   return (
     <AnimatedPage className={"application-page"}>
-      <Progress stage={stage} goToStage={goToStage} />
-      <CustomSection className={"application"}>
-        <header>
-          <h1>{headers[stage - 1]}</h1>
-          {/* <span>All fields are required.</span> */}
-        </header>
-        <form onSubmit={handleSubmit}>
-          {!isSubmitStage ? (
-            appStagesContent[stage - 1].map(({ name, label, options }) =>
-              selectTypes.includes(name) ? (
-                <Select
-                  key={name}
-                  label={label}
-                  name={name}
-                  handleChange={handleInput}
-                  value={data?.[name] || ""}
-                  options={options}
-                />
-              ) : fileTypes.includes(name) ? (
-                <FileInput
-                  key={name}
-                  handleChange={handleChange}
-                  name={name}
-                  label={label}
-                  value={data?.[name] || ""}
-                />
-              ) : (
-                <TextInput
-                  key={name}
-                  {...{
-                    value: data?.[name] || "",
-                    handleInput: handleInput,
-                    name: name,
-                    label: label,
-                  }}
-                />
+      <Progress
+        stage={stage}
+        goToStage={stage && goToStage}
+        completedStages={applicationDetails?.completedStages}
+      />
+      {isLoading || !stage ? (
+        <Spinner desc={"Initializing your application..."} />
+      ) : (
+        <CustomSection className={"application"}>
+          <header>
+            <h1>{headers[stage - 1]}</h1>
+            {/* <span>All fields are required.</span> */}
+          </header>
+          <form onSubmit={handleSubmit}>
+            {!isSubmitStage ? (
+              appStagesContent[stage - 1]?.map(({ name, label, options }) =>
+                selectTypes.includes(name) ? (
+                  <Select
+                    key={name}
+                    label={label}
+                    name={name}
+                    handleChange={handleInput}
+                    value={data?.[name] || ""}
+                    options={options}
+                  />
+                ) : fileTypes.includes(name) ? (
+                  <FileInput
+                    key={name}
+                    handleChange={handleChange}
+                    name={name}
+                    label={label}
+                    value={data?.[name] || ""}
+                  />
+                ) : (
+                  <TextInput
+                    key={name}
+                    {...{
+                      value: data?.[name] || "",
+                      handleInput: handleInput,
+                      name: name,
+                      label: label,
+                    }}
+                  />
+                )
               )
-            )
-          ) : (
-            <div className="terms">
-              <p>
-                By clicking the submit button below, I certify that all of the
-                information provided by me on this application is true and
-                complete, and I understand that if any false information,
-                ommissions, or misrepresentations are discovered, my application
-                may be rejected, if I am accepted to be trained, the offer could
-                be terminated, and if I am employed, the offer could also be
-                terminated at any time.
-              </p>
-              <p>{`In consideration of my employment, I agree to conform to the company's rules and regulations, and I agree that my employment can be terminated, with or without cause, and with or without notice, at any time, at either my or the company's option.
+            ) : (
+              <div className="terms">
+                <p>
+                  By clicking the submit button below, I certify that all of the
+                  information provided by me on this application is true and
+                  complete, and I understand that if any false information,
+                  ommissions, or misrepresentations are discovered, my
+                  application may be rejected, if I am accepted to be trained,
+                  the offer could be terminated, and if I am employed, the offer
+                  could also be terminated at any time.
+                </p>
+                <p>{`In consideration of my employment, I agree to conform to the company's rules and regulations, and I agree that my employment can be terminated, with or without cause, and with or without notice, at any time, at either my or the company's option.
               I also understand and agree that the terms and conditions of my employment may be changed, with or without cause, and with or without notice, at any time by the company.`}</p>
+              </div>
+            )}
+            <div className="form-actions">
+              <button
+                type="button"
+                className={stage === 1 ? "disabled" : "back"}
+                onClick={back}
+              >
+                Back
+              </button>
+              <button type="submit" className={!canSave ? "disabled" : ""}>
+                {isSubmitStage ? "Submit Application" : "Save & Continue"}
+              </button>
             </div>
-          )}
-          <div className="form-actions">
-            <button
-              type="button"
-              className={stage === 1 ? "disabled" : "back"}
-              onClick={back}
-            >
-              Back
-            </button>
-            <button type="submit" className={!canSave ? "disabled" : ""}>
-              {isSubmitStage ? "Submit Application" : "Save & Continue"}
-            </button>
-          </div>
-        </form>
-      </CustomSection>
+          </form>
+        </CustomSection>
+      )}
     </AnimatedPage>
   );
 };
