@@ -9,7 +9,10 @@ export const extendedApplicationApiSlice = apiSlice.injectEndpoints({
         body: credentials,
         credentials: "include",
       }),
-      transformResponse: (response) => response,
+      transformResponse: (response) => {
+        response && localStorage.setItem("applicationId", response.id);
+        return response;
+      },
       invalidatesTags: [{ type: "Application", id: "list" }],
     }),
     getApplication: builder.query({
