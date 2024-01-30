@@ -11,6 +11,8 @@ import {
   headers,
   notRequiredFields,
   selectTypes,
+  terms1,
+  terms2,
 } from "../../util/content";
 import "./application.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,10 +22,13 @@ import {
   inputValue,
 } from "../../app/applicationSlice";
 import { applicationId, nextStage } from "../../util/function";
-import { useGetApplicationQuery } from "../../app/applicationApiSlice";
+import {
+  useCreateApplicationMutation,
+  useGetApplicationQuery,
+} from "../../app/applicationApiSlice";
 import Spinner from "../../components/spinner/Spinner";
 
-const fileInitialState = { resume: "", coverLetter: "" };
+// const fileInitialState = { resume: "", coverLetter: "" };
 const Application = () => {
   const dispatch = useDispatch();
 
@@ -31,21 +36,32 @@ const Application = () => {
     applicationId,
     { skip: !applicationId }
   );
+  const [
+    saveProgressByStage,
+    { isLoading: savingProgress, data: progressDetails },
+  ] = useCreateApplicationMutation();
 
   // Have a stage progress field in backend which would be used as initialState.
   const [stage, setStage] = useState(0);
   const data = useSelector((state) => getDataByStage(state, stage));
-  const [{ resume, coverLetter }, setFileValue] = useState(fileInitialState);
+  // const [{ resume, coverLetter }, setFileValue] = useState(fileInitialState);
 
   useEffect(() => {
     applicationDetails && dispatch(applySavedValues(applicationDetails));
-    !isLoading &&
-      setStage(nextStage(applicationDetails?.completedStages || []));
-  }, [applicationDetails, isLoading, dispatch]);
+  }, [applicationDetails, dispatch]);
 
   const goToStage = (newStage) => {
     setStage(newStage);
+    window.scrollTo(0, 0);
   };
+  useEffect(() => {
+    !isLoading &&
+      goToStage(
+        nextStage(
+          (progressDetails || applicationDetails)?.completedStages || []
+        )
+      );
+  }, [applicationDetails, progressDetails, isLoading]);
 
   const handleInput = (e, value) => {
     dispatch(
@@ -57,7 +73,6 @@ const Application = () => {
   };
 
   const handleChange = () => {};
-  const handleSubmit = () => {};
 
   const [canSave, isSubmitStage] = useMemo(
     () => [
@@ -69,12 +84,17 @@ const Application = () => {
     [data, stage]
   );
 
-  // const next = () => {
-  //   // stage === 3 ? show confirmation page (no navigation. use state to render)
+  const next = (e) => {
+    e && e.preventDefault();
 
-  //   // Saving
-  //   stage === 3 ? console.log("done") : setStage(stage + 1);
-  // };
+    const args = {
+      id: applicationId,
+      stage,
+      createdAt: new Date(),
+      data,
+    };
+    saveProgressByStage(args);
+  };
   const back = () => {
     setStage(stage - 1);
   };
@@ -83,8 +103,10 @@ const Application = () => {
     <AnimatedPage className={"application-page"}>
       <Progress
         stage={stage}
-        goToStage={stage && goToStage}
-        completedStages={applicationDetails?.completedStages}
+        goToStage={stage && !savingProgress && goToStage}
+        completedStages={
+          (progressDetails || applicationDetails)?.completedStages
+        }
       />
       {isLoading || !stage ? (
         <Spinner desc={"Initializing your application..."} />
@@ -92,9 +114,8 @@ const Application = () => {
         <CustomSection className={"application"}>
           <header>
             <h1>{headers[stage - 1]}</h1>
-            {/* <span>All fields are required.</span> */}
           </header>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={next}>
             {!isSubmitStage ? (
               appStagesContent[stage - 1]?.map(({ name, label, options }) =>
                 selectTypes.includes(name) ? (
@@ -128,17 +149,7 @@ const Application = () => {
               )
             ) : (
               <div className="terms">
-                <p>
-                  By clicking the submit button below, I certify that all of the
-                  information provided by me on this application is true and
-                  complete, and I understand that if any false information,
-                  ommissions, or misrepresentations are discovered, my
-                  application may be rejected, if I am accepted to be trained,
-                  the offer could be terminated, and if I am employed, the offer
-                  could also be terminated at any time.
-                </p>
-                <p>{`In consideration of my employment, I agree to conform to the company's rules and regulations, and I agree that my employment can be terminated, with or without cause, and with or without notice, at any time, at either my or the company's option.
-              I also understand and agree that the terms and conditions of my employment may be changed, with or without cause, and with or without notice, at any time by the company.`}</p>
+                <p>{terms1}</p> <p>{terms2}</p>
               </div>
             )}
             <div className="form-actions">
@@ -149,9 +160,13 @@ const Application = () => {
               >
                 Back
               </button>
-              <button type="submit" className={!canSave ? "disabled" : ""}>
-                {isSubmitStage ? "Submit Application" : "Save & Continue"}
-              </button>
+              {savingProgress ? (
+                <Spinner />
+              ) : (
+                <button type="submit" className={!canSave ? "disabled" : ""}>
+                  {isSubmitStage ? "Submit Application" : "Save & Continue"}
+                </button>
+              )}
             </div>
           </form>
         </CustomSection>
