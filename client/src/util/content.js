@@ -408,3 +408,9 @@ export const notRequiredFields = {
   6: ["coverLetter"],
   7: [],
 };
+
+export const terms1 =
+  "By clicking the submit button below, I certify that all of the information provided by me on this application is true and complete, and I understand that if any false information, ommissions, or misrepresentations are discovered, my application may be rejected, if I am accepted to be trained, the offer could be terminated, and if I am employed, the offer could also be terminated at any time.";
+
+export const terms2 = `In consideration of my employment, I agree to conform to the company's rules and regulations, and I agree that my employment can be terminated, with or without cause, and with or without notice, at any time, at either my or the company's option.
+I also understand and agree that the terms and conditions of my employment may be changed, with or without cause, and with or without notice, at any time by the company.`;
