@@ -1,9 +1,12 @@
 import Application from "../models/application.js";
+import { canSaveStageToDB } from "../util/helperFuntions.js";
 
 export const createApplication = async (req, res) => {
   const { id, stage, createdAt, data } = req.body;
   let application;
   try {
+    if (!canSaveStageToDB(stage, data)) throw "Incomplete details";
+
     if (!id) {
       application = new Application({
         ...data,
@@ -31,6 +34,8 @@ export const createApplication = async (req, res) => {
       .json({ error: "An error was encountered. Try again" });
   }
 };
+
+export const submitApplication = async (req, res) => {};
 
 export const getApplication = async (req, res) => {
   const { id } = req.params;
