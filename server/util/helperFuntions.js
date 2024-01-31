@@ -32,7 +32,8 @@ const requiredDataByStage = {
     "refEmail",
   ],
   6: ["resume"],
+  7: [],
 };
 
 export const canSaveStageToDB = (stage, data) =>
-  requiredDataByStage[stage].every((key) => data[key]);
+  requiredDataByStage[stage]?.every((key) => data[key]);
