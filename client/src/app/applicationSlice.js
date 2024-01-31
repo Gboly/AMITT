@@ -2,7 +2,10 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { getInitialInfo } from "../util/function";
 import { appStagesContent } from "../util/content";
 
-const initialState = getInitialInfo([].concat(...appStagesContent));
+const initialState = {
+  ...getInitialInfo([].concat(...appStagesContent)),
+  isSuccessful: false,
+};
 
 export const applicationSlice = createSlice({
   name: "application",
@@ -20,7 +23,11 @@ export const applicationSlice = createSlice({
         return accum;
       }, {});
 
-      state = updatedState;
+      state = { ...updatedState, isSuccessful: false };
+      return state;
+    },
+    setIsSuccess: (state, action) => {
+      state.isSuccessful = action.payload;
       return state;
     },
   },
@@ -41,6 +48,9 @@ export const getDataByStage = createSelector(
   }
 );
 
-export const { inputValue, applySavedValues } = applicationSlice.actions;
+export const getSuccessState = (state) => state.application.isSuccessful;
+
+export const { inputValue, applySavedValues, setIsSuccess } =
+  applicationSlice.actions;
 
 export const applicationReducer = applicationSlice.reducer;
