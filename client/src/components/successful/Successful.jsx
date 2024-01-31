@@ -4,10 +4,8 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import Icon from "../icon/Icon";
 import ConfettiExplosion from "react-confetti-explosion";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Successful = () => {
-  const navigate = useNavigate();
   const [isConfetti, setIsConfetti] = useState(false);
 
   useEffect(() => {
@@ -41,7 +39,9 @@ const Successful = () => {
             Your application has been submitted. Our Team would conduct a review
             and would reach out to you on outcome and next steps.
           </p>
-          <button onClick={() => navigate("/")}>Go to Home page</button>
+          <button onClick={() => (window.location.href = "/")}>
+            Go to Home page
+          </button>
         </section>
       </div>
     </AnimatedPage>
