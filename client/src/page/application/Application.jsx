@@ -27,6 +27,7 @@ import {
   useGetApplicationQuery,
 } from "../../app/applicationApiSlice";
 import Spinner from "../../components/spinner/Spinner";
+import Successful from "../../components/successful/Successful";
 
 // const fileInitialState = { resume: "", coverLetter: "" };
 const Application = () => {
@@ -41,10 +42,15 @@ const Application = () => {
     { isLoading: savingProgress, data: progressDetails },
   ] = useCreateApplicationMutation();
 
+  const [isSuccessful, setIsSuccessful] = useState(false);
   // Have a stage progress field in backend which would be used as initialState.
   const [stage, setStage] = useState(0);
   const data = useSelector((state) => getDataByStage(state, stage));
   // const [{ resume, coverLetter }, setFileValue] = useState(fileInitialState);
+
+  useEffect(() => {
+    isSuccessful && (document.body.style.overflow = "hidden");
+  }, [isSuccessful]);
 
   useEffect(() => {
     applicationDetails && dispatch(applySavedValues(applicationDetails));
@@ -61,6 +67,12 @@ const Application = () => {
           (progressDetails || applicationDetails)?.completedStages || []
         )
       );
+
+    const lastStage =
+      progressDetails?.completedStages[
+        progressDetails?.completedStages?.length - 1
+      ]?.stage;
+    lastStage === 7 && setIsSuccessful(true);
   }, [applicationDetails, progressDetails, isLoading]);
 
   const handleInput = (e, value) => {
@@ -171,6 +183,7 @@ const Application = () => {
           </form>
         </CustomSection>
       )}
+      {isSuccessful && <Successful />}
     </AnimatedPage>
   );
 };
