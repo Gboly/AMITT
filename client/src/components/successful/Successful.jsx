@@ -8,19 +8,25 @@ import { useNavigate } from "react-router-dom";
 
 const Successful = () => {
   const navigate = useNavigate();
-  const [isConfetti, setIsConfetti] = useState(true);
+  const [isConfetti, setIsConfetti] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsConfetti(false), 5000);
+    const timeout1 = setTimeout(() => setIsConfetti(true), 500);
+    const timeout2 = setTimeout(() => setIsConfetti(false), 3500);
 
-    return () => clearTimeout(timeout);
+    const clear = () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
+
+    return () => clear();
   }, []);
 
   return (
     <AnimatedPage className={"successful-application"}>
       {isConfetti && (
         <aside>
-          <ConfettiExplosion duration={5000} width={5000} particleCount={250} />
+          <ConfettiExplosion duration={3000} width={5000} particleCount={250} />
         </aside>
       )}
       <div>
