@@ -25,3 +25,13 @@ export const nextStage = (completedStages) => {
   const lastStage = completedStages[completedStages?.length - 1]?.stage;
   return !lastStage ? 1 : lastStage === 7 ? 7 : lastStage + 1;
 };
+
+const stages = [1, 2, 3, 4, 5, 6];
+export const canSubmit = (ad, pd) => {
+  const details = [
+    ...(ad?.completedStages || []),
+    ...(pd?.completedStages || []),
+  ];
+  const completedStages = details.map(({ stage }) => stage);
+  return stages.every((stage) => completedStages.includes(stage));
+};

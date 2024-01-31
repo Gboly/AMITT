@@ -21,7 +21,7 @@ import {
   getDataByStage,
   inputValue,
 } from "../../app/applicationSlice";
-import { applicationId, nextStage } from "../../util/function";
+import { applicationId, canSubmit, nextStage } from "../../util/function";
 import {
   useCreateApplicationMutation,
   useGetApplicationQuery,
@@ -88,12 +88,14 @@ const Application = () => {
 
   const [canSave, isSubmitStage] = useMemo(
     () => [
-      Object.keys(data).every((key) =>
-        notRequiredFields?.[stage]?.includes(key) ? true : data[key]
-      ),
+      stage === 7
+        ? canSubmit(applicationDetails, progressDetails)
+        : Object.keys(data).every((key) =>
+            notRequiredFields?.[stage]?.includes(key) ? true : data[key]
+          ),
       stage === 7,
     ],
-    [data, stage]
+    [data, stage, applicationDetails, progressDetails]
   );
 
   const next = (e) => {
