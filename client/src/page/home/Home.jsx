@@ -7,10 +7,13 @@ import ActionCameo from "../../components/action-cameo/ActionCameo";
 import Article from "../../components/article/Article";
 import community from "../../assets/community.png";
 import communityMd from "../../assets/community-md.png";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const introRef = useRef();
   const valuesRef = useRef();
+
+  const navigate = useNavigate();
 
   return (
     <AnimatedPage className={"home"}>
@@ -67,7 +70,7 @@ const Home = () => {
               with you to map out a personalized journey based on your distinct
               potential and passion.
             </p>
-            <button>Apply Now</button>
+            <button onClick={() => navigate("/application")}>Apply Now</button>
           </div>
         </CustomSection>
         <img src={community} alt="" className={"community-1"} />
