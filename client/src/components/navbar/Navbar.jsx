@@ -6,10 +6,16 @@ import logo from "../../assets/amitt-logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Icon from "../icon/Icon";
+import usePopUpHandler from "../../util/cutom-hooks/usePopupHandler";
+import Sidebar from "../sidebar/Sidebar";
+import { AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const sidebarRef = useRef(null);
+  const [sidebarIsOpen, openSidebar, closeSidebar] =
+    usePopUpHandler(sidebarRef);
 
   return (
     <>
@@ -33,7 +39,7 @@ const Navbar = () => {
           </nav>
           <ApplyButton />
           <Icon
-            //handleClick={openSidebar}
+            handleClick={openSidebar}
             value={MenuIcon}
             className={"menu-icon"}
           />
@@ -51,9 +57,11 @@ const Navbar = () => {
       <SearchBar ref={searchBarRef} closeSearch={closeSearch} />
     )} */}
       </section>
-      {/* {sidebarIsOpen && (
-    <Sidebar ref={sidebarRef} closeSidebar={closeSidebar} />
-  )} */}
+      {sidebarIsOpen && (
+        <AnimatePresence>
+          <Sidebar ref={sidebarRef} closeSidebar={closeSidebar} />
+        </AnimatePresence>
+      )}
     </>
   );
 };
