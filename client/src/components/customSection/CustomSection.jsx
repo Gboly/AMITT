@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { vSlideInBottom } from "../../util/variants";
 import { forwardRef } from "react";
 
-const CustomSectionWithRef = ({ children, header, className }, ref) => {
+const CustomSectionWithRef = ({ children, header, className, name }, ref) => {
   return (
     <section
       ref={ref}
       className={`reference-container section ${className || ""}`}
+      name={name}
     >
       <div>
         {ref && (

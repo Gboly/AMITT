@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import { faqHeaders, faqTopics, questions } from "../../util/content";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { scroller } from "react-scroll";
 
 const Faq = () => {
   const faqTopicsRef = useRef(null);
@@ -16,7 +17,7 @@ const Faq = () => {
 
   const changeTopic = (e) => {
     setActiveTopic(e.currentTarget.id);
-    // Scroll to topic section
+    scroller.scrollTo("questions", { smooth: true });
   };
 
   return (
@@ -64,6 +65,7 @@ const Faq = () => {
         ref={faqTopicRef}
         header={faqHeaders[activeTopic]}
         className={"questions"}
+        name="questions"
       >
         <div>
           {questions[activeTopic].map(({ summary, details }) => (
