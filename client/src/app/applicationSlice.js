@@ -1,6 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { getInitialInfo } from "../util/function";
-import { appStagesContent } from "../util/content";
+import { appStagesContent, fileTypes } from "../util/content";
 
 const initialState = {
   ...getInitialInfo([].concat(...appStagesContent)),
@@ -19,7 +19,11 @@ export const applicationSlice = createSlice({
     applySavedValues: (state, action) => {
       const data = action.payload;
       const updatedState = Object.keys(initialState).reduce((accum, key) => {
-        accum = { ...accum, [key]: data[key] };
+        // file fields are objects. There value is attached to the name key. Reason for the conditional below.
+        accum = {
+          ...accum,
+          [key]: fileTypes.includes(key) ? data[key]?.name : data[key],
+        };
         return accum;
       }, {});
 
