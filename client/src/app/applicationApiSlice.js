@@ -7,6 +7,7 @@ export const extendedApplicationApiSlice = apiSlice.injectEndpoints({
         url: "/application",
         method: "POST",
         body: credentials,
+        formData: true,
         credentials: "include",
       }),
       transformResponse: (response, meta, { stage }) => {

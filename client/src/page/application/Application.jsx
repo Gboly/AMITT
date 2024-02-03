@@ -29,7 +29,7 @@ import {
 } from "../../app/applicationApiSlice";
 import Spinner from "../../components/spinner/Spinner";
 
-// const fileInitialState = { resume: "", coverLetter: "" };
+const fileInitialState = { resume: "", coverLetter: "" };
 const Application = () => {
   const dispatch = useDispatch();
 
@@ -45,7 +45,7 @@ const Application = () => {
   // Have a stage progress field in backend which would be used as initialState.
   const [stage, setStage] = useState(0);
   const data = useSelector((state) => getDataByStage(state, stage));
-  // const [{ resume, coverLetter }, setFileValue] = useState(fileInitialState);
+  const [fileValue, setFileValue] = useState(fileInitialState);
 
   useEffect(() => {
     applicationDetails && dispatch(applySavedValues(applicationDetails));
@@ -79,7 +79,13 @@ const Application = () => {
     );
   };
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    e && e.preventDefault();
+
+    const { name } = e.target.files[0];
+    handleInput(e, name);
+    setFileValue({ ...fileValue, [e.target.id]: e.target.files[0] });
+  };
 
   const [canSave, isSubmitStage] = useMemo(
     () => [
@@ -100,9 +106,13 @@ const Application = () => {
       id: applicationId,
       stage,
       createdAt: new Date(),
-      data,
     };
-    saveProgressByStage(args);
+    const formData = new FormData();
+    Object.entries({ ...data, ...args }).forEach(([key, value]) =>
+      formData.append(key, fileTypes.includes(key) ? fileValue[key] : value)
+    );
+
+    saveProgressByStage(formData);
   };
   const back = () => {
     setStage(stage - 1);
