@@ -27,6 +27,7 @@ dist-ssr
 .env
 package-lock.json
 node_modules
+cred.json
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies

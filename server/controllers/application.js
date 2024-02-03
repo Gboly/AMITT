@@ -1,23 +1,48 @@
 import Application from "../models/application.js";
-import { canSaveStageToDB } from "../util/helperFuntions.js";
+import {
+  canSaveStageToDB,
+  extractDataFromBody,
+  initialDriveFiles,
+  uploadFile,
+} from "../util/helperFuntions.js";
 
 export const createApplication = async (req, res) => {
-  const { id, stage, createdAt, data } = req.body;
+  const { id, stage: progress, createdAt } = req.body;
+  const data = extractDataFromBody(req.body);
+  const files = Object.values(req.files).map(([file]) => file);
   let application;
-  try {
-    if (!canSaveStageToDB(stage, data)) throw "Incomplete details";
+  let driveFiles = initialDriveFiles;
+  const stage = Number(progress);
 
-    if (!id) {
+  try {
+    if (!canSaveStageToDB(stage, data)) throw "Incorrect or Incomplete details";
+
+    for (let f = 0; f < files.length; f += 1) {
+      const { key, name, driveId } = await uploadFile(files[f]);
+      driveFiles = { ...driveFiles, [key]: { name, driveId } };
+    }
+
+    if ((!id || id === "null") && stage !== 7) {
       application = new Application({
         ...data,
+        ...driveFiles,
         completedStages: [{ stage, createdAt }],
       });
       await application.save();
     } else {
       application = await Application.findOneAndUpdate(
         { _id: id },
-        { ...data, $push: { completedStages: { stage, createdAt } } }
+        {
+          ...data,
+          ...driveFiles,
+          $push: { completedStages: { stage, createdAt } },
+        }
       );
+      if (stage === 7) {
+        // nodemailer
+        //send details to ammitt mail
+        //send submission comfirmation to applicant's mail
+      }
     }
 
     return res.status(200).json({
@@ -34,8 +59,6 @@ export const createApplication = async (req, res) => {
       .json({ error: "An error was encountered. Try again" });
   }
 };
-
-export const submitApplication = async (req, res) => {};
 
 export const getApplication = async (req, res) => {
   const { id } = req.params;
