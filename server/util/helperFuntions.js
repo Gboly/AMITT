@@ -62,7 +62,7 @@ export const canSaveStageToDB = async (stage, data, id) => {
 };
 
 export const uploadFile = async (fileObject) => {
-  if (!fileObject) return { name: "", id: "" };
+  if (!fileObject) return { name: "", driveId: "", key: fileObject.fieldname };
 
   const bufferStream = new stream.PassThrough();
   bufferStream.end(fileObject.buffer);
