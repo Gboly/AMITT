@@ -33,11 +33,19 @@ const applicationSchema = schema({
   refRelDuration: { type: String, default: "", index: "text" },
   refPhone: { type: String, default: "", index: "text" },
   refEmail: { type: String, default: "", index: "text" },
-  resume: { type: String, default: "", index: "text" },
-  coverLetter: { type: String, default: "", index: "text" },
+  resume: {
+    type: { name: String, driveId: String },
+    default: { name: "", driveId: "" },
+    index: "text",
+  },
+  coverLetter: {
+    type: { name: String, driveId: String },
+    default: { name: "", driveId: "" },
+    index: "text",
+  },
   completedStages: { type: [{ stage: Number, createdAt: Date }], default: [] },
   createdAt: { type: Date, default: new Date() },
 });
 
-const Application = mongoose.model("scholarhsip", applicationSchema);
+const Application = mongoose.model("application", applicationSchema);
 export default Application;
