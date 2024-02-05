@@ -6,9 +6,12 @@ import MailIcon from "@mui/icons-material/Mail";
 import Icon from "../../components/icon/Icon";
 import { NavLink } from "react-router-dom";
 import CustomSection from "../../components/customSection/CustomSection";
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { customMessageDetails } from "../../util/content";
 import TextInput from "../../components/text-input/TextInput";
+import SuccessAlert from "../../components/alert/SuccessAlert";
+import { useSendMessageMutation } from "../../app/contactApiSlice";
+import Spinner from "../../components/spinner/Spinner";
 
 const initialState = customMessageDetails.reduce((accum, { name }) => {
   accum = { ...accum, [name]: "" };
@@ -18,14 +21,30 @@ const initialState = customMessageDetails.reduce((accum, { name }) => {
 const Contact = () => {
   const contactRef = useRef(null);
   const [details, setDetails] = useState(initialState);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const [send, { data, isLoading }] = useSendMessageMutation();
 
   const handleInput = (e) => {
     setDetails((current) => ({ ...current, [e.target.id]: e.target.value }));
   };
 
+  useEffect(() => {
+    data && setIsSuccess(true);
+  }, [data]);
+
+  const canSubmit = useMemo(() => {
+    const { firstName, email, message } = details;
+    const required = [firstName, email, message];
+    return required.every((value) => value);
+  }, [details]);
+
   const handleSubmit = (e) => {
     e && e.preventDefault && e.preventDefault();
+    canSubmit && send(details);
   };
+
+  const handleClose = () => setIsSuccess(false);
 
   return (
     <AnimatedPage className={"contact"}>
@@ -67,10 +86,25 @@ const Contact = () => {
             />
           ))}
           <div className="submit" name="custom-message">
-            <button type="submit">Submit</button>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <button type="submit" className={!canSubmit ? "disabled" : ""}>
+                Submit
+              </button>
+            )}
           </div>
         </form>
       </CustomSection>
+
+      {/* Alert */}
+      {isSuccess && (
+        <SuccessAlert
+          ref={contactRef}
+          message={"Message sent successfully."}
+          handleClose={handleClose}
+        />
+      )}
     </AnimatedPage>
   );
 };

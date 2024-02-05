@@ -82,7 +82,7 @@ export const learnMore = [
 export const customMessageDetails = [
   {
     name: "firstName",
-    label: "First Name",
+    label: "First Name *",
   },
   {
     name: "lastName",
@@ -90,7 +90,7 @@ export const customMessageDetails = [
   },
   {
     name: "email",
-    label: "Email",
+    label: "Email *",
   },
   {
     name: "phone",
@@ -98,7 +98,7 @@ export const customMessageDetails = [
   },
   {
     name: "message",
-    label: "Your Message To Us",
+    label: "Your Message To Us *",
   },
 ];
 

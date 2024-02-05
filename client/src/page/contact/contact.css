@@ -61,6 +61,11 @@
     border: none;
     font-family: var(--choice-font);
 }
+.contact .spinner {
+    min-height: fit-content;
+    width: fit-content;
+    height: fit-content;
+}
 
 @media screen and (max-width: 720px) {
     .contact .intro {
