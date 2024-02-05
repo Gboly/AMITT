@@ -10,11 +10,8 @@ export const extendedApplicationApiSlice = apiSlice.injectEndpoints({
         formData: true,
         credentials: "include",
       }),
-      transformResponse: (response, meta, { stage }) => {
-        response &&
-          (stage === 7
-            ? localStorage.removeItem("applicationId")
-            : localStorage.setItem("applicationId", response.id));
+      transformResponse: (response) => {
+        response && localStorage.setItem("applicationId", response.id);
         return response;
       },
       invalidatesTags: [{ type: "Application", id: "list" }],

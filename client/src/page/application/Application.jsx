@@ -48,7 +48,11 @@ const Application = () => {
   const [fileValue, setFileValue] = useState(fileInitialState);
 
   useEffect(() => {
-    applicationDetails && dispatch(applySavedValues(applicationDetails));
+    if (applicationDetails) {
+      dispatch(applySavedValues(applicationDetails));
+      goToStage(nextStage(applicationDetails.completedStages || []));
+    }
+    (!applicationId || applicationId === "null") && setStage(1);
   }, [applicationDetails, dispatch]);
 
   const goToStage = (newStage) => {
@@ -57,17 +61,16 @@ const Application = () => {
   };
   useEffect(() => {
     !isLoading &&
-      goToStage(
-        nextStage(
-          (progressDetails || applicationDetails)?.completedStages || []
-        )
-      );
+      progressDetails &&
+      goToStage(nextStage(progressDetails.completedStages || []));
 
     const lastStage =
       progressDetails?.completedStages[
         progressDetails?.completedStages?.length - 1
       ]?.stage;
-    lastStage === 7 && dispatch(setIsSuccess(true));
+    lastStage === 7 &&
+      dispatch(setIsSuccess(true)) &&
+      localStorage.removeItem("applicationId");
   }, [applicationDetails, progressDetails, isLoading, dispatch]);
 
   const handleInput = (e, value) => {
@@ -103,7 +106,7 @@ const Application = () => {
     e && e.preventDefault();
 
     const args = {
-      id: applicationId,
+      id: localStorage.getItem("applicationId"),
       stage,
       createdAt: new Date(),
     };
