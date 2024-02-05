@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>New Applicant Submission</title>
+    </head>
+    <body>
+      <!-- Introduction Section -->
+      <div style="background-color: #f2f2f2; padding: 20px;">
+        <h2>New Applicant Submission</h2>
+        <p>Dear AMITT Team,</p>
+        <p>We are excited to share that a new applicant has recently submitted their information. Please find the details below:</p>
+        <p>Application ID is {{_id}}</p>
+      </div>
+
+      <!-- Applicant Information Section -->
+      <div style="padding: 20px;">
+        <h3>Applicant Information:</h3>
+
+        <p>Personal Information</p>
+        <ul>
+          <li><strong>first name:</strong> {{firstName}}</li>
+          <li><strong>last name:</strong> {{lastName}}</li>
+          <li><strong>middle name:</strong> {{middleName}}</li>
+          <li><strong>Email:</strong> {{email}}</li>  
+          <li><strong>Phone number:</strong> {{phone}}</li>
+          <li><strong>Date of birth:</strong> {{birthday}}</li>
+          <li><strong>Country:</strong> {{country}}</li>
+          <li><strong>City:</strong> {{city}}</li>
+          <li><strong>State:</strong> {{state}}</li>
+          <li><strong>Address:</strong> {{address}}</li>
+          <li><strong>post code:</strong> {{postCode}}</li>
+          <li><strong>gender:</strong> {{gender}}</li>
+          <li><strong>race:</strong> {{race}}</li>
+        </ul>
+        <p>Education</p>
+        <ul>
+          <li><strong>High school:</strong> {{highSchool}}</li>
+          <li><strong>Duration at High school:</strong> {{highSchoolDuration}}</li>
+          <li><strong>Graduated from High school:</strong> {{highSchoolGraduate}}</li>
+          <li><strong>University:</strong> {{university}}</li>
+          <li><strong>Duration at University:</strong> {{univeristyDuration}}</li>
+          <li><strong>Course studied:</strong> {{univeristyCourse}}</li>
+          <li><strong>Graduated from University:</strong> {{universityGraduate}}</li>
+        </ul>
+        <p>Skills and Qualifications</p>
+        <ul>
+          <li><strong>Skills:</strong> {{skills}}</li>
+          <li><strong>Qualifications:</strong> {{qualifications}}</li>
+        </ul>
+        <p>Previous Employment</p>
+        <ul>
+          <li><strong>Previous Organization:</strong> {{prevOrganization}}</li>
+          <li><strong>Previous position:</strong> {{prevPosition}}</li>
+          <li><strong>Reason for Leaving:</strong> {{reasonForLeaving}}</li>
+        </ul>
+        <p>Referee</p>
+        <ul>
+          <li><strong>Name:</strong> {{referenceName}}</li>
+          <li><strong>Relationship:</strong> {{refRelationship}}</li>
+          <li><strong>Relationship Duration:</strong> {{refRelDuration}}</li>
+          <li><strong>Phone Number:</strong> {{refPhone}}</li>
+          <li><strong>Email:</strong> {{refEmail}}</li>
+        </ul>
+        <p>Resume and cover letter</p>
+        <ul>          
+          <li><strong>Resume:</strong> {{resume}}</li>
+          <li><strong>Cover letter:</strong> {{coverLetter}}</li>
+        </ul>
+      </div>
+
+      <!-- Conclusion Section -->
+      <div style="background-color: #f2f2f2; padding: 20px;">
+        <p>Thank you for your attention to this new application. If you have any    questions or need further information, please feel free to reach out to the applicant via Email provided. We appreciate your continued dedication to building our team.</p>
+        <p>Best regards,<br>AMITT Consulting Limited</p>
+      </div>
+    </body>
+</html>

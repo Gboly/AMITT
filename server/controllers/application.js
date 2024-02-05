@@ -1,10 +1,15 @@
+import transport, { hbOptions } from "../config/nodemailer.config.js";
 import Application from "../models/application.js";
 import {
   canSaveStageToDB,
   extractDataFromBody,
+  getSubmitMailOptions,
   initialDriveFiles,
   uploadFile,
 } from "../util/helperFuntions.js";
+import dotenv from "dotenv";
+dotenv.config();
+import hbs from "nodemailer-express-handlebars";
 
 export const createApplication = async (req, res) => {
   const { id, stage: progress, createdAt } = req.body;
@@ -25,7 +30,7 @@ export const createApplication = async (req, res) => {
     if ((!id || id === "null") && stage !== 7) {
       application = new Application({
         ...data,
-        ...driveFiles,
+        ...(stage === 6 ? driveFiles : {}),
         completedStages: [{ stage, createdAt }],
       });
       await application.save();
@@ -34,14 +39,19 @@ export const createApplication = async (req, res) => {
         { _id: id },
         {
           ...data,
-          ...driveFiles,
+          ...(stage === 6 ? driveFiles : {}),
           $push: { completedStages: { stage, createdAt } },
         }
       );
       if (stage === 7) {
         // nodemailer
+        transport.use("compile", hbs(hbOptions));
         //send details to ammitt mail
         //send submission comfirmation to applicant's mail
+        const options = getSubmitMailOptions(application);
+        for (let option of options) {
+          await transport.sendMail(option);
+        }
       }
     }
 

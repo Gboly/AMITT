@@ -2,6 +2,8 @@ import Application from "../models/application.js";
 import auth from "../config/googleConfig.js";
 import stream from "stream";
 import { google } from "googleapis";
+import dotenv from "dotenv";
+dotenv.config();
 
 const requiredDataByStage = {
   1: [
@@ -88,3 +90,30 @@ export const initialDriveFiles = fileNames.reduce((accum, name) => {
   accum = { ...accum, [name]: { name: "", driveId: "" } };
   return accum;
 }, {});
+
+export const getSubmitMailOptions = (application) => {
+  const data = JSON.parse(JSON.stringify(application));
+  const { firstName, email, resume, coverLetter } = data;
+  const submitOptions = {
+    from: process.env.GMAIL,
+    to: process.env.GMAIL,
+    template: "submission",
+    subject: "New Application Submitted",
+    context: {
+      ...data,
+      resume: `https://drive.google.com/file/d/${resume.driveId}/view`,
+      coverLetter: `https://drive.google.com/file/d/${coverLetter.driveId}/view`,
+    },
+  };
+
+  const confirmOptions = {
+    from: process.env.GMAIL,
+    to: email,
+    template: "confirmation",
+    subject: "Your Application is confirmed",
+    context: {
+      firstName,
+    },
+  };
+  return [submitOptions, confirmOptions];
+};
