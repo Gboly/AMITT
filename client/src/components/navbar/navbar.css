@@ -61,17 +61,7 @@
     }
 }
 @media screen and (max-width: 1240px) {
-    .nav-options > nav {
-        display: none;
-    }
-    .nav-options > div {
-        gap: 1rem;
-        margin-right: 1rem;
-    }
-    .menu-icon {
-        display: block;
-        margin-left: 1rem;
-    }
+    
 }
 @media screen and (max-width: 720px) {
     .nav-container {
@@ -84,5 +74,19 @@
         font-size: 0.8rem;
         padding: 0.45rem 0.8rem;
         border-radius: 0.45rem;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .nav-options > nav {
+        display: none;
+    }
+    .nav-options > div {
+        gap: 1rem;
+        margin-right: 1rem;
+    }
+    .menu-icon {
+        display: block;
+        margin-left: 1rem;
     }
 }
