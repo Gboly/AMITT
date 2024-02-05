@@ -1,0 +1,11 @@
+.confirmation-alert {
+    position: fixed;
+    top: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4rem;
+    width: 25rem;
+}
+.css-1ytlwq5-MuiAlert-icon {
+    margin-right: 1.5rem !important;
+}
