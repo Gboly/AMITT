@@ -7,6 +7,6 @@ export const apiSlice = createApi({
     baseUrl: isDev && "http://localhost:5000",
     //: "https://wcim-backend.vercel.app",
   }),
-  tagTypes: ["Application"],
+  tagTypes: ["Application", "Contact"],
   endpoints: () => ({}),
 });
