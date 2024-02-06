@@ -26,7 +26,7 @@ import { applicationId, canSubmit, nextStage } from "../../util/function";
 import {
   useCreateApplicationMutation,
   useGetApplicationQuery,
-} from "../../app/applicationApiSlice";
+} from "../../app/api/applicationApiSlice";
 import Spinner from "../../components/spinner/Spinner";
 
 const fileInitialState = { resume: "", coverLetter: "" };
