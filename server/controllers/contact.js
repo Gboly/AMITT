@@ -25,6 +25,7 @@ export const sendCustomMessage = async (req, res) => {
   };
 
   try {
+    if (!firstName || !email || !message) throw "Incomplete details";
     transport.use("compile", hbs(hbOptions));
     await transport.sendMail(mailOptions);
 
