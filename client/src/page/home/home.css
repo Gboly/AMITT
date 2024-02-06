@@ -40,6 +40,22 @@
     gap: 2rem;
     margin-top: 2rem;
 }
+.testimonials.section {
+    padding: 5rem 1rem;
+}
+.testimonials img {
+    width: 5rem;
+    margin-top: 1rem;
+    background-color: #fff;
+    border-radius: 50%;
+}
+.testimonials h3 {
+    margin-top: 0;
+}
+.testimonials span {
+    color: var(--primary-color);
+    cursor: pointer;
+}
 .community {
     position: relative;
 }

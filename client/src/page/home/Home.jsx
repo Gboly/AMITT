@@ -1,19 +1,25 @@
 import AnimatedPage from "../../components/animated/AnimatedPage";
 import "./home.css";
 import CustomSection from "../../components/customSection/CustomSection";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { actions, ourValues } from "../../util/content";
 import ActionCameo from "../../components/action-cameo/ActionCameo";
 import Article from "../../components/article/Article";
 import community from "../../assets/community.png";
 import communityMd from "../../assets/community-md.png";
 import { useNavigate } from "react-router-dom";
+import femaleUser from "../../assets/user-female.png";
 
 const Home = () => {
   const introRef = useRef();
   const valuesRef = useRef();
+  const testimonialsRef = useRef();
 
   const navigate = useNavigate();
+
+  const [isMore, setIsMore] = useState(false);
+
+  const showMore = () => setIsMore(true);
 
   return (
     <AnimatedPage className={"home"}>
@@ -52,6 +58,17 @@ const Home = () => {
           ))}
         </div>
       </CustomSection>
+      <CustomSection
+        header={"Testimonials"}
+        ref={testimonialsRef}
+        className={"shaded-section testimonials"}
+      >
+        <div>
+          <img src={femaleUser} alt="" />
+          <h3>Oluwaseun</h3>
+          {isMore ? testimony : testimonySnippet(showMore)}
+        </div>
+      </CustomSection>
       <section className="community">
         <CustomSection>
           <div className="community-article">
@@ -79,5 +96,51 @@ const Home = () => {
     </AnimatedPage>
   );
 };
+
+const testimony = (
+  <>
+    <p>
+      {`"I am someone who has benefited from this great training programme I just
+  want to say thank you for helping me to change and shape my career path in
+  life. I want to encourage you that if you are still doubting and
+  procrastinating with my short testimony.`}
+    </p>
+    <p>
+      Few years ago I was lost, bored, with no direction and a clear path to my
+      career. So I wanted a change and get a grips before all falls apart for
+      me. . I always wanted to work in Financial Service Industry where it is
+      challenging, possibility is endless and I can fulfill my potentials but
+      finding it difficult to get in. The training program has giving me the
+      break through, thanks to God; Specifically the collateral management
+      world. Here things are very volatile, where no day is the same and you
+      face different challenges in a fast pace environment that is only
+      guaranteed to build you and let you grow with enormous opportunities.
+    </p>
+    <p>
+      With no experience in the banking world at the time, I remember I embarked
+      on a 3 months weekend training programme in the collateral world and the
+      rest is history. Thanks to this training programme, I got my first offer
+      within the three months of the training and years still counting, I have
+      worked and still working in some of the biggest banks in the city, earning
+      great, being comfortable and fulfilling my dreams and my life changed
+      positively forever. Not bad for someone who looked lost with so direction
+      and almost ready to pack it all up.
+    </p>
+    <p>
+      Thank you AMITT Consulting, <br />
+      {`Oluwaseun."`}
+    </p>
+  </>
+);
+
+const testimonySnippet = (showMore) => (
+  <p>
+    {`"I am someone who has benefited from this great training programme I just
+want to say thank you for helping me to change and shape my career path in
+life. I want to encourage you that if you are still doubting and
+procrastinating with my short testimony... `}
+    <span onClick={showMore}>Read more</span>
+  </p>
+);
 
 export default Home;

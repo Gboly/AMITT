@@ -414,3 +414,27 @@ export const terms1 =
 
 export const terms2 = `In consideration of my employment, I agree to conform to the company's rules and regulations, and I agree that my employment can be terminated, with or without cause, and with or without notice, at any time, at either my or the company's option.
 I also understand and agree that the terms and conditions of my employment may be changed, with or without cause, and with or without notice, at any time by the company.`;
+
+export const testimony = [
+  `"I am someone who has benefited from this great training programme I just
+      want to say thank you for helping me to change and shape my career path in
+      life. I want to encourage you that if you are still doubting and
+      procrastinating with my short testimony.`,
+  `Few years ago I was lost, bored, with no direction and a clear path to my
+      career. So I wanted a change and get a grips before all falls apart for
+      me. . I always wanted to work in Financial Service Industry where it is
+      challenging, possibility is endless and I can fulfill my potentials but
+      finding it difficult to get in. The training program has giving me the
+      break through, thanks to God; Specifically the collateral management
+      world. Here things are very volatile, where no day is the same and you
+      face different challenges in a fast pace environment that is only
+      guaranteed to build you and let you grow with enormous opportunities.`,
+  `With no experience in the banking world at the time, I remember I embarked
+      on a 3 months weekend training programme in the collateral world and the
+      rest is history. Thanks to this training programme, I got my first offer
+      within the three months of the training and years still counting, I have
+      worked and still working in some of the biggest banks in the city, earning
+      great, being comfortable and fulfilling my dreams and my life changed
+      positively forever. Not bad for someone who looked lost with so direction
+      and almost ready to pack it all up.`,
+];
