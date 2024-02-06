@@ -1,4 +1,4 @@
-import { apiSlice } from "./api";
+import { apiSlice } from "../api";
 
 export const extendedContactApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -12,17 +12,15 @@ export const extendedContactApiSlice = apiSlice.injectEndpoints({
       transformResponse: (response) => response,
       invalidatesTags: [{ type: "Contact", id: "list" }],
     }),
-    subscribeToNewsletter: (builder) => ({
-      sendMessage: builder.mutation({
-        query: (credentials) => ({
-          url: "/newsletter/subscribe",
-          method: "POST",
-          body: credentials,
-          credentials: "include",
-        }),
-        transformResponse: (response) => response,
-        invalidatesTags: [{ type: "Contact", id: "newsletter" }],
+    subscribeToNewsletter: builder.mutation({
+      query: (credentials) => ({
+        url: "/newsletter/subscribe",
+        method: "POST",
+        body: credentials,
+        credentials: "include",
       }),
+      transformResponse: (response) => response,
+      invalidatesTags: [{ type: "Contact", id: "newsletter" }],
     }),
   }),
 });
