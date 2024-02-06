@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Animated from "../animated/Animated";
 import { spreadOut } from "../../util/variants";
 import { learnMore } from "../../util/content";
-import { useSubscribeToNewsletterMutation } from "../../app/contactApiSlice";
+import { useSubscribeToNewsletterMutation } from "../../app/api/contactApiSlice";
 import SuccessAlert from "../alert/SuccessAlert";
 import Spinner from "../spinner/Spinner";
 

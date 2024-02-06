@@ -10,7 +10,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { customMessageDetails } from "../../util/content";
 import TextInput from "../../components/text-input/TextInput";
 import SuccessAlert from "../../components/alert/SuccessAlert";
-import { useSendMessageMutation } from "../../app/contactApiSlice";
+import { useSendMessageMutation } from "../../app/api/contactApiSlice";
 import Spinner from "../../components/spinner/Spinner";
 import { scroller } from "react-scroll";
 
