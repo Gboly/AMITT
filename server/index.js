@@ -13,8 +13,18 @@ dotenv.config();
 const app = express();
 
 //cors
+const allowedOrigins = [
+  "https://amitt-consulting.vercel.app",
+  "http://localhost:5173",
+];
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) >= 0) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: "GET,POST,PUT,PATCH,DELETE,HEAD",
   credentials: true,
 };

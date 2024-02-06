@@ -4,8 +4,9 @@ import { isDev } from "../util/function";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: isDev && "http://localhost:5000",
-    //: "https://wcim-backend.vercel.app",
+    baseUrl: isDev
+      ? "http://localhost:5000"
+      : "https://amitt-backend.vercel.app",
   }),
   tagTypes: ["Application", "Contact"],
   endpoints: () => ({}),
