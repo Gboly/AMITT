@@ -4,7 +4,7 @@ import contactUs from "../../assets/contact.png";
 import CallIcon from "@mui/icons-material/Call";
 import MailIcon from "@mui/icons-material/Mail";
 import Icon from "../../components/icon/Icon";
-import { NavLink } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import CustomSection from "../../components/customSection/CustomSection";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { customMessageDetails } from "../../util/content";
@@ -12,6 +12,7 @@ import TextInput from "../../components/text-input/TextInput";
 import SuccessAlert from "../../components/alert/SuccessAlert";
 import { useSendMessageMutation } from "../../app/contactApiSlice";
 import Spinner from "../../components/spinner/Spinner";
+import { scroller } from "react-scroll";
 
 const initialState = customMessageDetails.reduce((accum, { name }) => {
   accum = { ...accum, [name]: "" };
@@ -23,6 +24,8 @@ const Contact = () => {
   const [details, setDetails] = useState(initialState);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const [query] = useSearchParams();
+
   const [send, { data, isLoading }] = useSendMessageMutation();
 
   const handleInput = (e) => {
@@ -32,6 +35,12 @@ const Contact = () => {
   useEffect(() => {
     data && setIsSuccess(true);
   }, [data]);
+
+  useEffect(() => {
+    const isFromFaq = query.get("question");
+    isFromFaq &&
+      scroller.scrollTo("custom-message", { smooth: true, delay: 400 });
+  }, [query]);
 
   const canSubmit = useMemo(() => {
     const { firstName, email, message } = details;
@@ -77,6 +86,7 @@ const Contact = () => {
         header={"Send Us A Message"}
         ref={contactRef}
         className={"custom-message"}
+        name="custom-message"
       >
         <form onSubmit={handleSubmit}>
           {customMessageDetails.map(({ name, label }) => (
