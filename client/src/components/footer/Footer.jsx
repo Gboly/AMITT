@@ -1,12 +1,15 @@
 import "./footer.css";
 import CustomSection from "../customSection/CustomSection";
 import logo from "../../assets/amitt-logo.png";
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Animated from "../animated/Animated";
 import { spreadOut } from "../../util/variants";
 import { learnMore } from "../../util/content";
+import { useSubscribeToNewsletterMutation } from "../../app/contactApiSlice";
+import SuccessAlert from "../alert/SuccessAlert";
+import Spinner from "../spinner/Spinner";
 
 const Footer = () => {
   const footerRef = useRef(null);
@@ -77,14 +80,33 @@ const LearnMoreOption = forwardRef(LearnMoreOptionWithRef);
 const SubscriptionForm = () => {
   const nameRef = useRef(null);
 
+  const [subscribe, { data, isLoading }] = useSubscribeToNewsletterMutation();
+
   const [userDetails, setUserDetails] = useState({ name: "", email: "" });
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    data && setIsSuccess(true);
+  }, [data]);
+
+  const canSave = useMemo(
+    () => Object.values(userDetails).every((value) => value),
+    [userDetails]
+  );
+
   const handleSubmit = (e) => {
     e && e.preventDefault();
+    const args = {
+      ...userDetails,
+      createdAt: new Date(),
+    };
+    canSave && subscribe(args);
   };
   const handleInput = (e) => {
     const { id, value } = e.target;
     setUserDetails({ ...userDetails, [id]: value });
   };
+  const handleClose = () => setIsSuccess(false);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -103,7 +125,26 @@ const SubscriptionForm = () => {
         value={userDetails.email}
         onInput={handleInput}
       />
-      <button type="submit">KEEP ME INFORMED</button>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <button
+          type="submit"
+          className={!canSave ? "disabled" : ""}
+          onClick={handleSubmit}
+        >
+          KEEP ME INFORMED
+        </button>
+      )}
+
+      {/* Alert */}
+      {isSuccess && (
+        <SuccessAlert
+          ref={nameRef}
+          message={data?.message || "Successful"}
+          handleClose={handleClose}
+        />
+      )}
     </form>
   );
 };

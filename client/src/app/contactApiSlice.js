@@ -12,7 +12,20 @@ export const extendedContactApiSlice = apiSlice.injectEndpoints({
       transformResponse: (response) => response,
       invalidatesTags: [{ type: "Contact", id: "list" }],
     }),
+    subscribeToNewsletter: (builder) => ({
+      sendMessage: builder.mutation({
+        query: (credentials) => ({
+          url: "/newsletter/subscribe",
+          method: "POST",
+          body: credentials,
+          credentials: "include",
+        }),
+        transformResponse: (response) => response,
+        invalidatesTags: [{ type: "Contact", id: "newsletter" }],
+      }),
+    }),
   }),
 });
 
-export const { useSendMessageMutation } = extendedContactApiSlice;
+export const { useSendMessageMutation, useSubscribeToNewsletterMutation } =
+  extendedContactApiSlice;
