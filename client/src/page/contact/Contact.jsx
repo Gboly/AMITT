@@ -104,17 +104,17 @@ const Contact = () => {
               </button>
             )}
           </div>
+
+          {/* Alert */}
+          {isSuccess && (
+            <SuccessAlert
+              ref={contactRef}
+              message={"Message sent successfully."}
+              handleClose={handleClose}
+            />
+          )}
         </form>
       </CustomSection>
-
-      {/* Alert */}
-      {isSuccess && (
-        <SuccessAlert
-          ref={contactRef}
-          message={"Message sent successfully."}
-          handleClose={handleClose}
-        />
-      )}
     </AnimatedPage>
   );
 };
