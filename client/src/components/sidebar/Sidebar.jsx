@@ -1,4 +1,4 @@
-import { forwardRef, useRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import "./sidebar.css";
 import Animated from "../animated/Animated";
 import { motion } from "framer-motion";
@@ -16,6 +16,12 @@ const SidebarWithRef = ({ closeSidebar }, ref) => {
     navigate(url);
     closeSidebar();
   };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => (document.body.style.overflow = "visible");
+  }, []);
 
   return (
     <aside className="reference-container" id="sidebar" ref={sidebarInViewRef}>

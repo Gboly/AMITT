@@ -4,6 +4,7 @@ import ApplyButton from "../apply-button/ApplyButton";
 import { navOptions } from "../../util/content";
 import logo from "../../assets/amitt-logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Icon from "../icon/Icon";
 import usePopUpHandler from "../../util/cutom-hooks/usePopupHandler";
@@ -38,12 +39,7 @@ const Navbar = () => {
             ))}
           </nav>
           <ApplyButton />
-          <Icon
-            handleClick={openSidebar}
-            value={MenuIcon}
-            className={"menu-icon"}
-          />
-          {/* {!sidebarIsOpen ? (
+          {!sidebarIsOpen ? (
             <Icon
               handleClick={openSidebar}
               value={MenuIcon}
@@ -51,11 +47,8 @@ const Navbar = () => {
             />
           ) : (
             <Icon value={CloseIcon} className={"menu-icon"} />
-          )} */}
+          )}
         </div>
-        {/* {searchIsOpen && (
-      <SearchBar ref={searchBarRef} closeSearch={closeSearch} />
-    )} */}
       </section>
       {sidebarIsOpen && (
         <AnimatePresence>
