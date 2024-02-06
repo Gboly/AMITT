@@ -21,6 +21,8 @@ const initialState = customMessageDetails.reduce((accum, { name }) => {
 
 const Contact = () => {
   const contactRef = useRef(null);
+  const firstNameRef = useRef(null);
+
   const [details, setDetails] = useState(initialState);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -38,8 +40,10 @@ const Contact = () => {
 
   useEffect(() => {
     const isFromFaq = query.get("question");
-    isFromFaq &&
+    if (isFromFaq) {
       scroller.scrollTo("custom-message", { smooth: true, delay: 400 });
+      firstNameRef.current.focus();
+    }
   }, [query]);
 
   const canSubmit = useMemo(() => {
@@ -92,7 +96,13 @@ const Contact = () => {
           {customMessageDetails.map(({ name, label }) => (
             <TextInput
               key={name}
-              {...{ name, label, value: details[name], handleInput }}
+              {...{
+                name,
+                label,
+                value: details[name],
+                handleInput,
+                ...(name === "firstName" ? { ref: firstNameRef } : {}),
+              }}
             />
           ))}
           <div className="submit" name="custom-message">

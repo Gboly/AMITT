@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import "./text-input.css";
 
 const inputTypes = {
@@ -10,7 +11,7 @@ const textareaTypes = [
   "qualifications",
   "reasonForLeaving",
 ];
-const TextInput = ({ value, handleInput, name, label }) => {
+const TextInputWithRef = ({ value, handleInput, name, label }, ref) => {
   return (
     <div
       className={`text-input-container ${
@@ -24,6 +25,7 @@ const TextInput = ({ value, handleInput, name, label }) => {
           value={value}
           onInput={handleInput}
           rows={10}
+          ref={ref}
           // autoComplete="off"
         />
       ) : (
@@ -33,10 +35,11 @@ const TextInput = ({ value, handleInput, name, label }) => {
           value={value}
           onInput={handleInput}
           autoComplete="off"
+          ref={ref}
         />
       )}
     </div>
   );
 };
-
+const TextInput = forwardRef(TextInputWithRef);
 export default TextInput;
