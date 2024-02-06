@@ -7,6 +7,7 @@ import cors from "cors";
 import runDb from "./config/db.config.js";
 import applicationRoute from "./routes/application.js";
 import contactRoute from "./routes/contact.js";
+import newsletterSubsRoute from "./routes/newsletterSubs.js";
 
 dotenv.config();
 const app = express();
@@ -32,6 +33,7 @@ runDb();
 //routing
 app.use("/application", applicationRoute);
 app.use("/message", contactRoute);
+app.use("/newsletter", newsletterSubsRoute);
 
 app.listen(process.env.PORT, (e) =>
   console.log(e || `Successfully connected to server ${process.env.PORT}`)
