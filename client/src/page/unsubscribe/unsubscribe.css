@@ -1,0 +1,43 @@
+.unsubscribe-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--soft-shadow-actual-color);
+}
+.unsubscribe-page main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem 0;
+    box-sizing: border-box;
+}
+.unsubscribe-page section {
+    width: 100%;
+    max-width: 30rem;
+    padding: 1rem 2rem 2.5rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+}
+.unsubscribe-page p {
+    font-size: var(--p1);
+}
+.unsubscribe-page div {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+}
+.unsubscribe-page button {
+    flex: 1;
+    padding: 0.5rem ;
+    border: none;
+    background-color: var(--dark);
+    border-radius: 0.3rem;
+    font-size: var(--p2);
+    font-family: inherit;
+    cursor: pointer;
+}
+.unsubscribe-page button:last-of-type {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: inherit;
+    padding: 0.5rem 1rem;
+}

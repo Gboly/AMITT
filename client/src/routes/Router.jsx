@@ -6,6 +6,7 @@ import About from "../page/about/About";
 import Contact from "../page/contact/Contact";
 import Faq from "../page/faq/Faq";
 import Application from "../page/application/Application";
+import Unsubscribe from "../page/unsubscribe/Unsubscribe";
 
 export default function Router() {
   return (
@@ -24,6 +25,8 @@ export default function Router() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/application" element={<Application />} />
       </Route>
+      <Route path="/unsubscribe" element={<Unsubscribe />} />
+      <Route path="/*" element={<></>} />
     </Routes>
   );
 }
