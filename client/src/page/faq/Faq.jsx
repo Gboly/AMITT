@@ -7,8 +7,10 @@ import { faqHeaders, faqTopics, questions } from "../../util/content";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { scroller } from "react-scroll";
+import { useNavigate } from "react-router-dom";
 
 const Faq = () => {
+  const navigate = useNavigate();
   const faqTopicsRef = useRef(null);
   const faqTopicRef = useRef(null);
 
@@ -31,7 +33,9 @@ const Faq = () => {
               We understand that clarity is key, and this page is designed to
               provide you with quick and comprehensive information.
             </p>
-            <button>Ask a question</button>
+            <button onClick={() => navigate("/contact?question=true")}>
+              Ask a question
+            </button>
           </div>
         </div>
       </section>
