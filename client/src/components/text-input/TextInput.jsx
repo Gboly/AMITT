@@ -11,7 +11,10 @@ const textareaTypes = [
   "qualifications",
   "reasonForLeaving",
 ];
-const TextInputWithRef = ({ value, handleInput, name, label }, ref) => {
+const TextInputWithRef = (
+  { value, handleInput, name, label, placeholder },
+  ref
+) => {
   return (
     <div
       className={`text-input-container ${
@@ -36,6 +39,7 @@ const TextInputWithRef = ({ value, handleInput, name, label }, ref) => {
           onInput={handleInput}
           autoComplete="off"
           ref={ref}
+          placeholder={placeholder || ""}
         />
       )}
     </div>

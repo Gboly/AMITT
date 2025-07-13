@@ -1,0 +1,86 @@
+.fsa .intro-desc {
+    text-align: left;
+    font-size: var(--p2);
+    margin-bottom: 1rem;
+    width: 100%;
+}
+.fsa .intro > img {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 20rem);
+    object-fit: cover;
+}
+.fsa-banner-md, .fsa-banner-sm {
+    display: none;
+}
+.apply-desc {
+    margin-top: 4rem;
+}
+.fsa-apply {
+    width: 100%;
+    max-width: calc(100% - 1rem);
+    padding-right: 1rem;
+}
+.fsa-apply input {
+    width: 100%;
+    max-width: 40rem;
+}
+.fsa-apply button {
+    margin-top: 1rem;
+    padding: 0.7rem 1rem;
+    font-family: var(--font-family);
+    font-size: var(--p4);
+    border-radius: 0.3rem;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+.joined {
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%); */
+    /* width: 100svw;
+    height: 100svh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, .5);
+    z-index: 100;
+    margin-top: 1rem;
+}
+.joined > div {
+    margin: 1rem;
+    width: calc(100% - 2rem);
+    max-width: 40rem;
+    background-color: var(--color-1);
+    padding: 1rem;
+    border-radius: 1rem;
+    position: relative;
+}
+.joined > div > div {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .2);
+    box-shadow: var(--light-text-box-shadow);
+    position: absolute;
+    right: 2rem;
+    cursor: pointer;
+}
+.joined > div > div:hover {
+
+}
+
+@media screen and (max-width: 960px) {
+    .fsa-banner-lg, .fsa-banner-sm {
+        display: none;
+    }
+    .fsa-banner-md {
+        display: block;
+    }
+}
