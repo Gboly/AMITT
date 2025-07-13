@@ -7,6 +7,7 @@ import Contact from "../page/contact/Contact";
 import Faq from "../page/faq/Faq";
 import Application from "../page/application/Application";
 import Unsubscribe from "../page/unsubscribe/Unsubscribe";
+import Fsa from "../page/fsa/FSA";
 
 export default function Router() {
   return (
@@ -24,6 +25,7 @@ export default function Router() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/application" element={<Application />} />
+        <Route path="/fsa" element={<Fsa />} />
       </Route>
       <Route path="/unsubscribe" element={<Unsubscribe />} />
       <Route path="/*" element={<></>} />
