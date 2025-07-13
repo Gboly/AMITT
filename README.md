@@ -44,7 +44,6 @@ Before installation, please make sure you have already installed the following t
    git clone https://github.com/<your-github-username>/AMITT
 3. Navigate to the project directory:
    cd amitt
-
 4. Navigate to the respective client and server directory:
    cd client
    cd server
