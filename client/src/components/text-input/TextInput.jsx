@@ -12,7 +12,7 @@ const textareaTypes = [
   "reasonForLeaving",
 ];
 const TextInputWithRef = (
-  { value, handleInput, name, label, placeholder },
+  { value, handleInput, name, label, placeholder, onFocus },
   ref
 ) => {
   return (
@@ -40,6 +40,7 @@ const TextInputWithRef = (
           autoComplete="off"
           ref={ref}
           placeholder={placeholder || ""}
+          onFocus={onFocus}
         />
       )}
     </div>

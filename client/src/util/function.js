@@ -35,3 +35,7 @@ export const canSubmit = (ad, pd) => {
   const completedStages = details.map(({ stage }) => stage);
   return stages.every((stage) => completedStages.includes(stage));
 };
+export const isValidEmail = (email) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+};

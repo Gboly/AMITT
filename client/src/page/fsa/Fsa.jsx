@@ -1,9 +1,12 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AnimatedPage from "../../components/animated/AnimatedPage";
 import "./fsa.css";
 import CustomSection from "../../components/customSection/CustomSection";
 import VideoPlayer from "../../components/video-player/VideoPlayer";
 import TextInput from "../../components/text-input/TextInput";
+import { isValidEmail } from "../../util/function";
+import { useJoinFsaMutation } from "../../app/api/fsaApiSlice";
+import Spinner from "../../components/spinner/Spinner";
 
 const banners = [
   {
@@ -19,21 +22,35 @@ const banners = [
 const Fsa = () => {
   const fsaRef = useRef(null);
 
+  const [joinFsa, { data, isLoading }] = useJoinFsaMutation();
+
   const [email, setEmail] = useState("");
+  const [invalidEmail, setInvalidEmail] = useState(false);
   const [joined, setjoined] = useState(false);
 
   const handleInput = (e) => {
     setEmail(e.target.value);
   };
   const handleJoin = () => {
-    if (email) {
-      setjoined(true);
-      setEmail("");
+    if (isValidEmail(email)) {
+      joinFsa({ email, createdAt: new Date().toLocaleDateString() });
+    } else {
+      setInvalidEmail(true);
     }
   };
   const handleClose = () => {
     setjoined(false);
   };
+  const handleFocus = () => {
+    invalidEmail && setInvalidEmail(false);
+  };
+
+  useEffect(() => {
+    if (data) {
+      setjoined(true);
+      setEmail("");
+    }
+  }, [data]);
 
   return (
     <AnimatedPage className={"fsa"}>
@@ -91,10 +108,18 @@ const Fsa = () => {
               name={"email"}
               //label={""}
               placeholder={"Email Address"}
+              onFocus={handleFocus}
             />
-            <button className={!email ? "disabled" : ""} onClick={handleJoin}>
-              Get Started
-            </button>
+            {invalidEmail && (
+              <p className="invalid-email">Provide a correct email address</p>
+            )}
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <button className={!email ? "disabled" : ""} onClick={handleJoin}>
+                Get Started
+              </button>
+            )}
           </div>
           {joined && <Joined handleClose={handleClose} />}
         </CustomSection>
