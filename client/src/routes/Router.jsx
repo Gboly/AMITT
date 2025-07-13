@@ -7,7 +7,7 @@ import Contact from "../page/contact/Contact";
 import Faq from "../page/faq/Faq";
 import Application from "../page/application/Application";
 import Unsubscribe from "../page/unsubscribe/Unsubscribe";
-import Fsa from "../page/fsa/FSA";
+import Fsa from "../page/fsa/Fsa";
 
 export default function Router() {
   return (
