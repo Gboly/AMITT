@@ -14,6 +14,7 @@ import { AnimatePresence } from "framer-motion";
 const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const isFsaPage = location.pathname === "/fsa";
   const sidebarRef = useRef(null);
   const [sidebarIsOpen, openSidebar, closeSidebar] =
     usePopUpHandler(sidebarRef);
@@ -38,7 +39,7 @@ const Navbar = () => {
               <NavOption key={option.desc} option={option} />
             ))}
           </nav>
-          <ApplyButton />
+          {!isFsaPage && <ApplyButton />}
           {!sidebarIsOpen ? (
             <Icon
               handleClick={openSidebar}
