@@ -8,6 +8,7 @@ import runDb from "./config/db.config.js";
 import applicationRoute from "./routes/application.js";
 import contactRoute from "./routes/contact.js";
 import newsletterSubsRoute from "./routes/newsletterSubs.js";
+import fsaRoute from "./routes/fsa.js";
 
 dotenv.config();
 const app = express();
@@ -44,6 +45,7 @@ runDb();
 app.use("/application", applicationRoute);
 app.use("/message", contactRoute);
 app.use("/newsletter", newsletterSubsRoute);
+app.use("/fsa", fsaRoute);
 
 app.listen(process.env.PORT, (e) =>
   console.log(e || `Successfully connected to server ${process.env.PORT}`)
